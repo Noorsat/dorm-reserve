@@ -1,0 +1,26 @@
+.rooms{
+    margin-bottom: 180px;
+}
+.rooms__title{
+    font-weight: 700;
+    font-size: 30px;
+    color: #000000;
+    margin-bottom: 22px;
+}
+.rooms__items{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.rooms_item_text{
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+}
+.rooms_item_img{
+    margin-bottom: 20px;
+}
+.rooms__item:nth-child(-n+8){
+    margin-bottom: 41px;
+}

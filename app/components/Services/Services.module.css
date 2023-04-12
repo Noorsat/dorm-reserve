@@ -1,0 +1,25 @@
+.services{
+    padding-top: 30px;
+    margin-bottom: 69px;
+}
+.services__items{
+    background: #082673;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding:85px 112px 85px 112px;
+}
+.services__item:nth-child(-n+4){
+    margin-bottom: 117px;
+}
+
+.services__item_text{
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.services__item_img{
+    text-align: center;
+    margin-bottom: 22px;
+}
