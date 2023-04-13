@@ -48,3 +48,9 @@ table {
 *,body{
   font-family: 'Roboto', sans-serif;
 }
+.ant-modal-close-x{
+	display: none!important;
+}
+.ant-modal{
+	top:30px!important;
+}
