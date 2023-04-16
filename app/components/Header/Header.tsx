@@ -3,11 +3,15 @@
 import { FC, useState } from 'react'
 import styles from './Header.module.css';
 import {Modal} from 'antd';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Header: FC = () => {
     const [signupModal, setSignupModal] = useState<boolean>(false);
     const [loginModal, setLoginModal] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>(false);
+
+    const pathname = usePathname();
 
     const [login, setLogin] = useState<any>({});
 
@@ -27,6 +31,8 @@ const Header: FC = () => {
             setLoginModal(false)
         }
     }
+
+    console.log(pathname.split('/'))
 
     return (
         <div className={styles.header}>
@@ -138,9 +144,15 @@ const Header: FC = () => {
                             </>
                             : 
                             <>
-                                <div className={styles.icons}>
-                                    <img src='bell.svg' />
-                                    <img src='account.svg' />
+                                <div className={styles.icons__bell}>
+                                    <Link href={'/account'} className={styles.account__link}>
+                                        <img src='bell.svg' />
+                                    </Link>
+                                </div>
+                                <div className={`${styles.icons} ${pathname?.split('/')[1] === 'account' && styles.icons__account}`}>
+                                    <Link href={'/account'} className={styles.account__link}>
+                                        <img src='account.svg' />
+                                    </Link>
                                 </div>
                             </>
                         }

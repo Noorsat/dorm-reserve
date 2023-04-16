@@ -154,9 +154,16 @@
     max-width: 394px;
     margin:0 auto;
 }
-.icons{
-    margin-left: 50px;
+.icons__bell{
+    margin-left: 55px;
 }
-.icons img{
-    margin-left: 11px;
+.icons__account{
+    border-bottom: 2px solid #fff;
+    padding-bottom: 11px;
+    margin-left: 10px;
+    position: relative;
+    top:5px;
+}
+.icons{
+    margin-left: 10px;
 }
