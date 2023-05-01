@@ -1,0 +1,91 @@
+.booking{
+    background: url('./../../public/bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 880px;
+    padding-top: 30px;
+}
+.booking__wrapper{
+    position: relative;
+}
+.booking__tip{
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    color: #FFFFFF;
+    background: rgba(77, 108, 186, 0.5);
+    border: 1px solid #082673;
+    padding: 24px 0 19px 25px;
+    margin-left: 21px;
+    margin-right: 21px;
+    margin-bottom: 26px;
+}
+.next__button_text{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    color: #FFFFFF;
+}
+.next__button{
+    border-radius: 20px;
+    background: #6A6F7C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:4px;
+    width: fit-content;
+    padding:13px 9px 13px 16px;
+    position: absolute;
+    right:0;
+    margin-top: 30px;
+}
+.next__button.active{
+    background:#00AD43;
+}
+.question__title{
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+    max-width: 194px;
+    width: 100%;
+    margin:0 auto;
+    margin-top: 62px;
+    margin-bottom: 47px;
+}
+.question__buttons{
+    display: flex;
+    justify-content: center;
+    gap:197px;
+}
+.question__button{
+    border-radius: 10px;
+    padding:6px 25px 7px 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap:20px;
+}
+.no__button img{
+    position: relative;
+    top:3px;
+}
+.yes__button img{
+    position: relative;
+    top:3px;
+}
+.question__button_text{
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.no__button{
+    background: #EF3340;
+}
+.yes__button{
+    background: #00AD43;
+}

@@ -1,0 +1,64 @@
+.selection__map{
+    width: 99%;
+}
+.selection__door{
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    color: #082673;
+    padding:7px 22px;
+    background: #FFFFFF;
+    width: fit-content;
+    margin:0 auto;
+    margin-bottom: 8px;
+}
+.selection__window{
+    font-weight: 800;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    color: #082673;
+    padding:7px 15px;
+    background: #FFFFFF;
+    width: fit-content;
+    margin:0 auto;
+    margin-top: 8px;
+}
+.selection__items{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    max-width: 344px;
+    width:100%;
+    margin:0 auto;
+}
+.selection__item{
+    padding:50px;
+    padding-bottom: 8px;
+}
+.selection__item:first-child, .selection__item:nth-child(2){
+    border-bottom:1px solid #fff;
+}
+.selection__item:first-child, .selection__item:nth-child(3){
+    border-right: 1px solid #fff;
+}
+.selection__item_number{
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    padding:5px 11px;
+    width: fit-content;
+    margin:0 auto;
+}
+.selection__item_img{
+    margin-bottom: 33px;   
+}
+.active .selection__item_number{
+    background:#082673;
+    border-color: #082673;
+    color:#fff;
+}

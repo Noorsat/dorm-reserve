@@ -26,9 +26,6 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
-	list-style: none;
-}
 blockquote, q {
 	quotes: none;
 }
@@ -47,10 +44,17 @@ table {
 }
 *,body{
   font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
 }
-.ant-modal-close-x{
+.ant-modal-close{
 	display: none!important;
+}
+.bookingModal .ant-modal-close{
+	display: block!important;
 }
 .ant-modal{
 	top:30px!important;
+}
+.bookingModal.ant-modal{
+	top:250px!important;
 }

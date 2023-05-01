@@ -1,17 +1,89 @@
 "use client"; 
 
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import styles from './Header.module.css';
 import {Modal} from 'antd';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Select from '../Select/Select';
 
 const Header: FC = () => {
     const [signupModal, setSignupModal] = useState<boolean>(false);
     const [loginModal, setLoginModal] = useState<boolean>(false);
-    const [isLogin, setIsLogin] = useState<boolean>(false);
+    const [resetPasswordModal, setResetPasswordModal] = useState<boolean>(false);
+    const [isLogin, setIsLogin] = useState<boolean>();
+    const [selects, setSelects] = useState<any>([
+        {
+            title: 'Faculty',
+            options: [
+                {
+                    title:'Business School',
+                    text: 'BS'
+                },
+                {
+                    title:'Engineering and Natural Sciences',
+                    text: 'ENS'
+                },
+                {
+                    title:'Education an Humanities',
+                    text: 'EH'
+                },
+                {
+                    title:'Law and Social Sciences',
+                    text: 'LSS'
+                },
+            ],
+            open: false,
+            answer:'',
+            large: true
+        },
+        {
+            title: 'Course',
+            options: [
+                {
+                    title:'1',
+                },
+                {
+                    title:'2',
+                },
+                {
+                    title:'3',
+                },
+                {
+                    title:'4',
+                },
+            ],
+            open: false,
+            answer:''
+        },
+        {
+            title: 'Gender',
+            options: [
+                {
+                    title:'Female',
+                    text: 'F'
+                },
+                {
+                    title:'Male',
+                    text: 'M'
+                },
+            ],
+            open: false,
+            answer:''
+        }
+    ]);
 
     const pathname = usePathname();
+
+    useEffect(() => {
+        const logged = localStorage.getItem('logged')
+
+        if (logged === 'ok'){
+            setIsLogin(true);
+        }else{
+            setIsLogin(false);
+        }
+    }, [])
 
     const [login, setLogin] = useState<any>({});
 
@@ -24,31 +96,40 @@ const Header: FC = () => {
         setSignupModal(true)
         setLoginModal(false)
     }
+
+    const forgotHandler = () => {
+        setResetPasswordModal(true);
+        setLoginModal(false);
+    }
+
+    const goLoginHandler = () => {
+        setLoginModal(true);
+        setResetPasswordModal(false)
+    }
     
     const loginHandler = () => {
         if (login?.id === '190103056' && login?.password === '1234'){
             setIsLogin(true);
             setLoginModal(false)
+            localStorage.setItem('logged', 'ok');
+            window.location.reload()
         }
     }
-
-    console.log(pathname.split('/'))
 
     return (
         <div className={styles.header}>
             <Modal open={signupModal} width={582} onCancel={() => setSignupModal(false)} footer={[]}>
                 <div className={styles.signup__wrapper}>
                     <div className={styles.signup__logo}>
-                        <img src='logo.png'/>
+                        <Link href='/'>
+                            <img src='logo.png'/>
+                        </Link>
                     </div>
                     <div className={styles.signup__title}>
                         Sign Up
                     </div>
                     <div className={styles.signup__input}>
                         <input placeholder='Student ID' />
-                    </div>
-                    <div className={styles.signup__input}>
-                        <input placeholder='Password' />
                     </div>
                     <div className={styles.signup__input}>
                         <input placeholder='Firstname' />
@@ -62,13 +143,18 @@ const Header: FC = () => {
                     <div className={styles.signup__input}>
                         <input placeholder='Phone' />
                     </div>
-                    <div className={styles.signup__input_wrapper}>
-                        <div className={styles.signup__input}>
-                            <input placeholder='Program' />
-                        </div>
-                        <div className={styles.signup__input}>
-                            <input placeholder='Course' />
-                        </div>
+                    <div className={styles.signup__input_selects}>
+                        {
+                            selects?.map((item : any, index: number) => (
+                                <Select data={item} selects={selects} onChange={setSelects} number={index}/>
+                            ))
+                        } 
+                    </div>
+                    <div className={styles.signup__input}>
+                        <input placeholder='Create your password' type='password' />
+                    </div>
+                    <div className={styles.signup__input}>
+                        <input placeholder='Confirm your password' type='password' />
                     </div>
                     <div className={styles.signup__button}>
                         Sign Up
@@ -92,7 +178,7 @@ const Header: FC = () => {
                     <div className={styles.signup__input}>
                         <input placeholder='Password' type='password' value={login?.password} onChange={(e) => setLogin({...login, password: e.target.value})} />
                     </div>
-                    <div className={styles.login__link}>
+                    <div className={styles.login__link} onClick={forgotHandler}>
                         Forgotten your username or password?
                     </div>
                     <div className={styles.signup__button} onClick={loginHandler}>
@@ -102,25 +188,55 @@ const Header: FC = () => {
                         Already have an account? <span onClick={signupOpenHandler}>Sign Up</span>
                     </div>
                 </div>
-            </Modal>    
+            </Modal>  
+            <Modal open={resetPasswordModal} width={582} onCancel={() => setLoginModal(false)} footer={[]}>
+                <div className={styles.signup__wrapper}>
+                    <div className={styles.signup__logo}>
+                        <img src='logo.png'/>
+                    </div>
+                    <div className={styles.signup__title}>
+                        Forgot password?
+                    </div>
+                    <div className={styles.reset__text}>
+                        To start password reset process please enter the student ID given to you by University.
+                    </div>
+                    <div className={styles.signup__input}>
+                        <input placeholder='ID' value={login?.id} onChange={(e) => setLogin({...login, id: e.target.value})}/>
+                    </div>
+                    <div className={styles.reset__example}>
+                        Example student number: 150101001
+                    </div>
+                    <div className={styles.signup__button} onClick={loginHandler}>
+                        Continue
+                    </div>
+                    <div className={styles.signup__link}>
+                        Back to <span onClick={goLoginHandler}>Login</span>
+                    </div>
+                </div>
+            </Modal>  
             <div className='container'>
                 <div className={styles.header__wrapper}>
+                    <div className={styles.header__logo}>
+                        <img src='logo.svg'/>
+                    </div>
                     <div className={styles.header__wrapper_nav}>
-                        <div className={styles.header__address}>
-                            <div className={styles.header__address_icon}>
-                                <img src='location.svg'/>
-                            </div>
-                            <div className={styles.header__address_text}>
-                                Almaty, Karasai region, Kaskelen
-                            </div>
+                        <div className={styles.header__wrapper_item}>
+                            Home
                         </div>
-                        <div className={styles.header__phone}>
-                            <div className={styles.header__phone_icon}>
-                                <img src='phone.svg'/>
-                            </div>
-                            <div className={styles.header__phone_text}>
-                                847938473873
-                            </div>
+                        <div className={styles.header__wrapper_item}>
+                            About us
+                        </div>
+                        <div className={styles.header__wrapper_item}>
+                            <Link href='/booking'>Booking</Link>
+                        </div>
+                        <div className={styles.header__wrapper_item}>
+                            Extra services
+                        </div>
+                        <div className={styles.header__wrapper_item}>
+                            Contact us
+                        </div>
+                        <div className={styles.header__wrapper_item}>
+                            FAQ
                         </div>
                     </div>
                     <div className={styles.header__wrapper_content}>
@@ -156,7 +272,6 @@ const Header: FC = () => {
                                 </div>
                             </>
                         }
-                       
                     </div>
                 </div>
             </div>

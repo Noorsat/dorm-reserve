@@ -87,3 +87,7 @@
     font-size: 25px;
     color: #FFFFFF;
 }
+.news__wrapper{
+    display: flex;
+    justify-content: space-between;
+}

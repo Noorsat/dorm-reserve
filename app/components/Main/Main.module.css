@@ -17,6 +17,7 @@
     font-weight: 900;
     font-size: 65px;
     color: #F8FBFE;
+    padding-top: 15%;
 }
 .main__time{
     position: absolute;
@@ -39,7 +40,23 @@
     font-weight: 900;
     font-size: 45px;
     color: #FFFFFF;
-    padding:18px 116px;
+    padding:18px 150px;
     background: #93989C;
+    width: fit-content;
     border-radius: 35px;
+}
+.main__button{
+    font-weight: 900;
+    font-size: 35px;
+    line-height: 41px;
+    text-align: center;
+    color: #FFFFFF;
+    background: #6A1C1C;
+    border-radius: 35px;
+    padding:24px 43px;
+    width: fit-content;
+    position: absolute;
+    right: 0;
+    bottom:123px;
+    white-space: nowrap;
 }

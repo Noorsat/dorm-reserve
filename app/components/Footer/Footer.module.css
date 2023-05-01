@@ -24,66 +24,48 @@
 .footer__form{
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 20px;
-    max-width: 589px;
-    width: 100%;
-    padding: 9px 26px 25px 26px;
+    padding:24px 42px 15px 42px;
 }
 .footer__form_title{
-    font-weight: 400;
+    font-weight: 800;
     font-size: 25px;
-    line-height: 40px;
-    letter-spacing: 0.02em;
-    color: #000000;
-    margin-bottom: 5px;
+    line-height: 30px;
+    color: #082673;
 }
-.footer__form_input_error, .footer__form_input_link{
-    max-width: 557px;
+.footer__form_input{
     width: 100%;
+    margin-bottom: 15px;
 }
-.footer__form_input_error{
-    margin-bottom: 11px;
-}
-.footer__form_input_link{
-    margin-bottom: 16px;
-}
-.footer__form_input_error input{
-    width: 100%;
+.footer__form_input input{
     font-weight: 400;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 40px;
     letter-spacing: 0.02em;
-    color: #000000;
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 25px;
-    padding-bottom: 47px;
-    padding-left: 27px; 
-    padding-top: 6px;
-}
-.footer__form_input_link input{
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 40px;
-    letter-spacing: 0.02em;
-    color: #000000;
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 25px;
     width: 100%;
-    padding-bottom: 17px;
-    padding-left: 27px; 
-    padding-top: 10px;
+    color: #93989C;
+    border: none;
+    border-bottom: 1px solid #082673;
+    outline: none;
+}
+.footer__form_input input::placeholder{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 40px;
+    letter-spacing: 0.02em;
+    color: #93989C;
+}
+.footer__form_input:last-child input{
+    padding-bottom: 29px;
 }
 .footer__form_button{
     font-weight: 900;
-    font-size: 20px;
-    line-height: 40px;
+    font-size: 25px;
     letter-spacing: 0.02em;
-    color: #FFFFFF;
-    background: #082673;
-    padding-top: 4px;
-    padding-bottom: 6px;
-    border-radius: 25px;
+    color: #082673;
+    background: #FFFFFF;
+    border: 1px solid #082673;
     text-align: center;
+    width:90%;
+    margin:0 auto;
+    padding:12px 0;
 }

@@ -22,7 +22,6 @@ const Footer = () => {
                             Address:
                         </div>
                         <div className={styles.footer__title}>
-                            1/1 Abylai Khan Street, Kaskelen, Kazakhstan
                         </div>
                         <div className={styles.footer__c}>
                             © 2023 All rights reserved
@@ -30,16 +29,21 @@ const Footer = () => {
                     </div>
                     <div className={styles.footer__form}>
                         <div className={styles.footer__form_title}>
-                            Write an error:
+                            Have a question? Contact us!
                         </div>
-                        <div className={styles.footer__form_input_error}>
-                            <input type="text" placeholder='An error*' />
-                        </div>
-                        <div className={styles.footer__form_input_link}>
-                            <input type="text" placeholder='Link of the site, that you found the error*' />
+                        <div className={styles.footer__form_inputs}>
+                            <div className={styles.footer__form_input}>
+                                <input placeholder='Your name' />
+                            </div>
+                            <div className={styles.footer__form_input}>
+                                <input placeholder='Your email' />
+                            </div>
+                            <div className={styles.footer__form_input}>
+                                <input placeholder='Your message for us' />
+                            </div>
                         </div>
                         <div className={styles.footer__form_button}>
-                            Send
+                            SEND
                         </div>
                     </div>
                 </div>

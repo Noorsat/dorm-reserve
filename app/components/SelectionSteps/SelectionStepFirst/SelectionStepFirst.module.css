@@ -1,0 +1,23 @@
+.selection__map_a, .selection__map_b{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    color: #FFFFFF;
+    height: 360px;
+    width:49%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.selection__map_a span, .selection__map_b span{
+    font-weight: 300;
+    font-size: 100px;
+    line-height: 117px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+}
+.selection__map_b{
+    border-right: 1px solid #000000;
+}
