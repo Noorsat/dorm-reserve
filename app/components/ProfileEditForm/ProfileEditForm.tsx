@@ -52,7 +52,7 @@ const ProfileEditForm = () => {
                         Balance:      
                     </div>
                     <div className={styles.form__item_input}>
-                        325 000 T
+                        0 T
                     </div>
                 </div>
             </div>
