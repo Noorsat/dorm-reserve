@@ -49,3 +49,10 @@
     align-items: center;
     justify-content: center;
 }
+.rate__item_title{
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    color: #FFFFFF;
+}

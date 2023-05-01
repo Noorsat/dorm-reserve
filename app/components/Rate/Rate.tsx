@@ -40,14 +40,29 @@ const Rate : FC<any>  = ({setNextActive} : any) => {
                 </div>
                 <div className={styles.selection__map}>
                     <div className={styles.rate__items}>
-                        <div className={styles.rate__item}> 
-                            breakfast
+                        <div>
+                            <div className={styles.rate__item}> 
+                                breakfast
+                            </div> 
+                            <div className={styles.rate__item_title}>
+                                50000
+                            </div>
                         </div>
-                        <div className={styles.rate__item}>
-                            dinner
+                        <div>
+                            <div className={styles.rate__item}> 
+                                dinner
+                            </div> 
+                            <div className={styles.rate__item_title}>
+                                70000
+                            </div>
                         </div>
-                        <div className={styles.rate__item}>
-                            breakfast<br></br>+dinner
+                        <div>
+                            <div className={styles.rate__item}> 
+                                breakfast<br></br>+dinner
+                            </div> 
+                            <div className={styles.rate__item_title}>
+                                100000
+                            </div>
                         </div>
                     </div>
                 </div>
