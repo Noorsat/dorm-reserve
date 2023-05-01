@@ -6,6 +6,7 @@ import {Modal} from 'antd';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Select from '../Select/Select';
+import { useRouter } from 'next/navigation';
 
 const Header: FC = () => {
     const [signupModal, setSignupModal] = useState<boolean>(false);
@@ -74,6 +75,7 @@ const Header: FC = () => {
     ]);
 
     const pathname = usePathname();
+    const router = useRouter();
 
     useEffect(() => {
         const logged = localStorage.getItem('logged')
@@ -82,6 +84,7 @@ const Header: FC = () => {
             setIsLogin(true);
         }else{
             setIsLogin(false);
+            router.push("/")
         }
     }, [])
 
@@ -114,6 +117,11 @@ const Header: FC = () => {
             localStorage.setItem('logged', 'ok');
             window.location.reload()
         }
+    }
+
+    const logoutHandler = () => {
+        localStorage.removeItem("logged");
+        window.location.reload();
     }
 
     return (
@@ -217,11 +225,15 @@ const Header: FC = () => {
             <div className='container'>
                 <div className={styles.header__wrapper}>
                     <div className={styles.header__logo}>
-                        <img src='logo.svg'/>
+                        <Link href='/'>
+                            <img src='logo.svg'/>
+                        </Link>
                     </div>
                     <div className={styles.header__wrapper_nav}>
                         <div className={styles.header__wrapper_item}>
-                            Home
+                            <Link href='/'>
+                                Home
+                            </Link>
                         </div>
                         <div className={styles.header__wrapper_item}>
                             About us
@@ -259,7 +271,10 @@ const Header: FC = () => {
                                 </div>
                             </>
                             : 
-                            <>
+                            <> 
+                                <div className={styles.log__out} onClick={logoutHandler}>
+                                    Log Out
+                                </div>
                                 <div className={styles.icons__bell}>
                                     <Link href={'/account'} className={styles.account__link}>
                                         <img src='bell.svg' />

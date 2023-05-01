@@ -156,7 +156,7 @@
     margin:0 auto;
 }
 .icons__bell{
-    margin-left: 55px;
+
 }
 .icons__account{
     border-bottom: 2px solid #fff;
@@ -211,4 +211,14 @@
     line-height: 12px;
     color: #000000;
     margin-bottom: 10px;
+}
+.log__out{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-left: 18px;
+    margin-right: 20px;
+    cursor: pointer;
 }
