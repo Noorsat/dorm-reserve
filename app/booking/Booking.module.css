@@ -55,6 +55,18 @@
     margin-top: 62px;
     margin-bottom: 47px;
 }
+.booking__modal_title{
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+    max-width: 381px;
+    width: 100%;
+    margin:0 auto;
+    margin-top: 62px;
+    margin-bottom: 47px;
+}
 .question__buttons{
     display: flex;
     justify-content: center;
@@ -88,4 +100,24 @@
 }
 .yes__button{
     background: #00AD43;
+}
+.success__icon{
+    text-align: center;
+    padding-top: 50px;
+    margin-bottom: 44px;
+}
+.success__title{
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 35px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 25px;
+}
+.success__text{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #666666;
 }

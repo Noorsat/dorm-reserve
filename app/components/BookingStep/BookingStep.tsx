@@ -1,7 +1,8 @@
 import {FC, useEffect} from 'react';
-import styles from './TotalPrice.module.css';
+import styles from './BookingStep.module.css';
+import Countdown from 'react-countdown';
 
-const TotalPrice : FC<any> = ({setNextActive, info}: any) => {
+const BookingStep : FC<any> = ({setNextActive, info}: any) => {
 
     useEffect(() => {
         setNextActive(true)
@@ -17,7 +18,9 @@ const TotalPrice : FC<any> = ({setNextActive, info}: any) => {
         return bed;
     }
 
-    console.log(info)
+    const renderer = ({ hours, minutes, seconds } : any) => {
+        return <span>{minutes} min : {seconds} sec</span>;
+      };
 
     return (
         <div className={styles.selection}>
@@ -59,26 +62,39 @@ const TotalPrice : FC<any> = ({setNextActive, info}: any) => {
                     </div>
                 </div>
                 <div className={styles.selection__map}>
-                    <div className={styles.total__info}>
-                        <div className={styles.total__bed}>
-                            <img src='bed.svg'/>
-                        </div>
-                        <div>
-                            <div className={styles.room__info}>
-                                <div className={styles.room__info_title}>
-                                    Room
+                    <div>
+                        <div className={styles.total__info}>
+                            <div className={styles.total__bed}>
+                                <img src='bed.svg'/>
+                            </div>
+                            <div>
+                                <div className={styles.room__info}>
+                                    <div className={styles.room__info_title}>
+                                        Room
+                                    </div>
+                                    <div className={styles.room__info_text}>
+                                        {getRoom()}
+                                    </div>
                                 </div>
-                                <div className={styles.room__info_text}>
-                                    {getRoom()}
+                                <div className={styles.room__info}>
+                                    <div className={styles.room__info_title}>
+                                        Bed 
+                                    </div>
+                                    <div className={styles.room__info_text}>
+                                        {getBed()}
+                                    </div>
                                 </div>
                             </div>
-                            <div className={styles.room__info}>
-                                <div className={styles.room__info_title}>
-                                    Bed 
-                                </div>
-                                <div className={styles.room__info_text}>
-                                    {getBed()}
-                                </div>
+                        </div>
+                        <div className={styles.time__left}>
+                            <div className={styles.time__left_title}>
+                                Until the end of your reservation left:
+                            </div>
+                            <div className={styles.time__left_t}>
+                                <Countdown
+                                    date={Date.now() + 1800000}
+                                    renderer={renderer}
+                                />
                             </div>
                         </div>
                     </div>
@@ -88,4 +104,4 @@ const TotalPrice : FC<any> = ({setNextActive, info}: any) => {
     )
 }
 
-export default TotalPrice;
+export default BookingStep;

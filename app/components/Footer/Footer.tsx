@@ -22,6 +22,7 @@ const Footer = () => {
                             Address:
                         </div>
                         <div className={styles.footer__title}>
+                            1/1 Abylai Khan Street, Kaskelen, Kazakhstan
                         </div>
                         <div className={styles.footer__c}>
                             © 2023 All rights reserved

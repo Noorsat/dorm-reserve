@@ -95,6 +95,29 @@
     justify-content: space-between;
     gap:30px;
 }
+.time__left{
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    margin-top: 57px;
+    padding-top: 38px;
+    padding-bottom: 51px;
+}
+.time__left_title{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 30px;
+}
+.time__left_t{
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 47px;
+    text-align: center;
+    color: #000000;
+}
 .total__item_text{
     font-weight: 500;
     font-size: 20px;
