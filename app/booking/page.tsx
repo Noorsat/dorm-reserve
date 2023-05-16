@@ -10,6 +10,7 @@ import {Modal} from 'antd';
 import { IInfo } from './types';
 import BookingStep from '../components/BookingStep/BookingStep';
 import { useRouter } from 'next/navigation';
+import Confirm from '../components/Confirm/Confirm';
 
 const Booking: FC = () => {
     const [nextActive, setNextActive] = useState<boolean>(false);
@@ -41,7 +42,8 @@ const Booking: FC = () => {
             }else if (bookingStep === 3){
                 setTotalModal(true);
             }else if (bookingStep === 4){
-                setBookingModal(true);
+                setBookingStep(bookingStep+1);
+                setNextActive(false);
             }
             
         }
@@ -204,9 +206,10 @@ const Booking: FC = () => {
                         bookingStep === 5 && 
                         <div className={styles.booking__wrapper}>
                             <div className={styles.booking__tip}>
-                                At this step, you can see the total price of your booking.
+                                At this step, you have to attach all the necessary documents
+                                <br></br>(this documents should be in original format, when you came to dormitory to sign the contract)
                             </div>
-                            <BookingStep setNextActive={setNextActive} info={info}/>
+                            <Confirm setNextActive={setNextActive} info={info}/>
                             <div className={`${styles.next__button} ${nextActive && styles.active}`} onClick={nextHandler}>
                                 <div className={styles.next__button_text}>
                                     CONFIRM

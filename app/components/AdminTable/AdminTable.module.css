@@ -1,0 +1,234 @@
+.wrapper{
+    padding-top:79px;
+    padding-left: 45px;
+    padding-right: 45px;
+    width: 100%;
+}
+.input{
+    display: flex;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 18px;
+}
+.input input{
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    padding: 13px 16px 10px 27px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #93989C;
+    width: 302px;
+}
+.input input::placeholder{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #93989C;
+}
+.input::after{
+    content: '';
+    display: block;
+    background:url('../../../public/search.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    top:13px;
+    right:40px;
+}
+.buttons{
+    display: flex;
+    gap:7px;
+}
+.button{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    padding:11px 27px;
+    transition: all 0.4s ease-in;
+}
+.button:hover{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    background: rgba(8, 38, 115, 0.7);
+    border: 1px solid #082673;
+}
+.table td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.table__text.active{
+    background: rgba(192, 233, 246, 0.5);
+    border: 1px solid #000000;
+    border-radius: 4px;
+    margin:5px 4px;
+    padding:4px;
+}
+.td__active{
+    padding:0!important;
+}
+.table__wrapper{
+    display: flex;
+    position: relative;
+}
+.checkboxs{
+    position: absolute;
+    left:-30px;
+    top:43px;
+}
+.checkbox{
+    margin-bottom: 5px;
+}
+.button.active{
+    color: #FFFFFF;
+    background: #082673;
+}
+.delete__title{
+    padding-top: 100px;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 77px;
+}
+.delete__buttons{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    gap:68px;
+}
+.delete__button{
+    display: flex;
+    align-items: center;
+    gap:20px;
+    border-radius: 10px;
+    padding: 5px 20px;
+}
+.delete__button_text{
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.delete__button:first-child{
+    background: #EF3340;
+}
+.delete__button:last-child{
+    background: #00AD43;
+}
+.delete__button:first-child .delete__button_icon{
+    position: relative;
+    top:2px;
+}
+.delete__button:last-child .delete__button_icon{
+    position: relative;
+    top:4px;
+}
+.save__button{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 13px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    width: fit-content;
+    float: right;
+    padding:14px 26px;
+    cursor: pointer;
+    transition:all 0.4s ease-in;
+}
+.save__button:hover{
+    background: rgba(8, 38, 115, 0.7);
+    color: #000000;
+}
+.save__button.active{
+    color:#fff;
+    background: #082673;
+}
+.add__title{
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 29px;
+    color: #082673;
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: 25px;
+}
+.signup__input{
+    max-width: 394px;
+    margin:0 auto;
+    text-align: center;
+    margin-bottom: 14px;
+}
+.signup__input input{
+    background: #C0E9F6;
+    border: 1px solid #000000;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 18px;
+    color: #93989C;
+    padding-left: 8px;
+    padding-top: 12px;
+    padding-bottom: 8px;
+    width:100%;
+}
+.signup__input input::placeholder{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #93989C;
+}
+.signup__input_selects{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap:4px;
+    margin-bottom: 14px;
+    max-width: 394px;
+    margin:0 auto;
+    margin-bottom: 16px;
+}
+.add__button{
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 23px;
+    text-align: center;
+    color: #082673;
+    max-width: 394px;
+    width: 100%;
+    padding:12px 0;
+    border: 1px solid #082673;
+    border-radius: 4px;
+    margin:0 auto;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+}
+.add__button:hover{
+    color: #082673;
+    background: rgba(8, 38, 115, 0.5);
+}
+.add__button.active{
+    background: #082673;
+    color:#fff;
+}

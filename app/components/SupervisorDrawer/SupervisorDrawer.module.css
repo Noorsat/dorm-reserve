@@ -1,0 +1,48 @@
+.drawer{
+    width: 20%;
+    border-right: 1px solid #082673;
+    height: 100vh;  
+}
+.drawer__avatar{
+    text-align: center;
+    padding-top: 25px;
+    margin-bottom: 7px;
+}
+.drawer__role{
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    margin-bottom: 17.5px;
+}
+.drawer__item{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    border-bottom: 1px solid #082673;
+    padding:10px 0;
+    padding-left: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+    transition: all 0.3s ease-in-out;
+}
+.drawer__item:first-child{
+    border-top:1px solid #082673;
+}
+.drawer__item::after{
+    content: '';
+    display: block;
+    background: url('../../../public/arrow-rig.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 9px;
+    height: 6px;
+}
+.drawer__item:hover{
+    background: rgba(8, 38, 115, 0.7);
+}

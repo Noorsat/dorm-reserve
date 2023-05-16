@@ -63,3 +63,23 @@ table {
 .bookingModal.ant-modal{
 	top:250px!important;
 }
+
+table, th, td {
+	border: 1px solid;
+	text-align: center;
+}
+table{
+	width: 100%;
+}
+.ant-checkbox-inner{
+	width: 20px!important;
+	height: 20px!important;
+	border: 1px solid #000000!important;
+	border-radius: 4px!important;
+}
+.deleteModal .ant-modal-close{
+	display: block!important;
+}
+.addModal .ant-modal-close{
+	display: block!important;
+}

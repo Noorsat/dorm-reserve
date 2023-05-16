@@ -1,0 +1,29 @@
+.admin__wrapper{
+    display: flex;
+}
+.admin__title{
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 59px;
+    color: #000000;
+    margin-bottom: 36px;
+}   
+.admin__text{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 35px;
+    color: #000000;
+}
+.admin__content{
+    padding-top:51px;
+    padding-left: 43px;
+}
+.admin__items li {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 35px;
+    color: #000000;
+}
+.admin__items{
+    padding-left: 30px;
+}

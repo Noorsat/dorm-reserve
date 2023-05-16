@@ -86,7 +86,7 @@ const Header: FC = () => {
             setIsLogin(false);
             router.push("/")
         }
-    }, [])
+    }, [pathname])
 
     const [login, setLogin] = useState<any>({});
 
