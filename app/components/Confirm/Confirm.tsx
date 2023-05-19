@@ -1,8 +1,49 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Confirm.module.css';
-import { Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import { Button, message, Upload } from 'antd';
+import type { UploadProps } from 'antd';
 
 const Confirm :FC<any> = ({setNextActive, info} : any) =>{
+    const [firstDocument, setFirstDocument] = useState();
+    const [secondDocument, setSecondDocument] = useState();
+    const [thirdDocument, setThirdDocument] = useState();
+    const [forthDocument, setForthDocument] = useState();
+
+    const props: UploadProps = {
+        name: 'file',
+        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        headers: {
+          authorization: 'authorization-text',
+        },
+      };
+
+    useEffect(() => {  
+        if (firstDocument && secondDocument && thirdDocument && forthDocument){
+            setNextActive(true);
+        }
+    }, [firstDocument, secondDocument, thirdDocument, forthDocument])
+
+    const fileSubmitHandler = (info : any, type : string) => {
+        if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList);
+          }
+          if (info.file.status === 'done') {
+            if (type === 'firstDocument'){
+                setFirstDocument(info.file.originFileObj)
+            }else if (type === 'secondDocument'){
+                setSecondDocument(info.file.originFileObj)
+            }else if (type === 'thirdDocument'){
+                setThirdDocument(info.file.originFileObj)
+            }else if (type === 'forthDocument'){
+                setForthDocument(info.file.originFileObj)
+            }
+            message.success(`${info.file.name} file uploaded successfully`);
+          } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`);
+          }
+    }
+
     return (
         <div className={styles.selection}>
         <div className={styles.selection__wrapper}>
@@ -32,7 +73,9 @@ const Confirm :FC<any> = ({setNextActive, info} : any) =>{
                             Attach a photo(3x4):
                         </div>
                         <div className={styles.confirm__input_input}>
-                            <Upload />
+                            <Upload {...props} onChange={(info) => fileSubmitHandler(info, 'firstDocument')}>
+                                <Button icon={<UploadOutlined />}>Upload a file</Button>
+                            </Upload>
                         </div>
                     </div>
                     <div className={styles.confirm__input}>
@@ -40,7 +83,9 @@ const Confirm :FC<any> = ({setNextActive, info} : any) =>{
                             Attach a payment receipt:
                         </div>
                         <div className={styles.confirm__input_input}>
-                            <input type='file' />
+                            <Upload {...props} onChange={(info) => fileSubmitHandler(info, 'secondDocument')}>   
+                                <Button icon={<UploadOutlined />}>Upload a file</Button>
+                            </Upload>
                         </div>
                     </div>
                     <div className={styles.confirm__input}>
@@ -48,7 +93,9 @@ const Confirm :FC<any> = ({setNextActive, info} : any) =>{
                             Attach a identity card:
                         </div>
                         <div className={styles.confirm__input_input}>
-                            <input type='file' />
+                            <Upload {...props} onChange={(info) => fileSubmitHandler(info, 'thirdDocument')}>
+                                <Button icon={<UploadOutlined />}>Upload a file</Button>
+                            </Upload>
                         </div>
                     </div>
                     <div className={styles.confirm__input}>
@@ -56,7 +103,9 @@ const Confirm :FC<any> = ({setNextActive, info} : any) =>{
                             Attach a medical form:
                         </div>
                         <div className={styles.confirm__input_input}>
-                            <input type='file' />
+                            <Upload {...props} onChange={(info) => fileSubmitHandler(info, 'forthDocument')}>
+                                <Button icon={<UploadOutlined />}>Upload a file</Button>
+                            </Upload>
                         </div>
                     </div>
                 </div>

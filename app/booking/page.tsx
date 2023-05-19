@@ -28,7 +28,6 @@ const Booking: FC = () => {
         return room;
     } 
 
-
     const getBed = () => {
         const bed = info?.bed?.split(" ")[1];
         return bed;
@@ -44,10 +43,14 @@ const Booking: FC = () => {
             }else if (bookingStep === 4){
                 setBookingStep(bookingStep+1);
                 setNextActive(false);
+            }else if (bookingStep === 5){
+                setSuccessModal(true);
             }
             
         }
     }
+
+    console.log(bookingStep)
 
     const totalYesHandler = () => {
         setTotalModal(false);
