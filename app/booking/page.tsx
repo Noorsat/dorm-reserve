@@ -39,18 +39,12 @@ const Booking: FC = () => {
                 setBookingStep(bookingStep+1)
                 setNextActive(false);
             }else if (bookingStep === 3){
-                setTotalModal(true);
-            }else if (bookingStep === 4){
-                setBookingStep(bookingStep+1);
                 setNextActive(false);
-            }else if (bookingStep === 5){
+                setTotalModal(true);
                 setSuccessModal(true);
             }
-            
         }
     }
-
-    console.log(bookingStep)
 
     const totalYesHandler = () => {
         setTotalModal(false);
@@ -158,9 +152,9 @@ const Booking: FC = () => {
                         bookingStep === 2 && 
                         <div className={styles.booking__wrapper}>
                             <div className={styles.booking__tip}>
-                                At this step, you must choose the Rate(Tariff) that suits you.(remember, that all rates are for 1 semester)
+                                At this step, you can see the total price and payment instruction.
                             </div>
-                            <Rate setNextActive={setNextActive} setBookingStep={setBookingStep} />
+                            <Rate setNextActive={setNextActive} info={info} />
                             <div className={`${styles.next__button} ${nextActive && styles.active}`} onClick={nextHandler}>
                                 <div className={styles.next__button_text}>
                                     NEXT
@@ -175,44 +169,10 @@ const Booking: FC = () => {
                         bookingStep === 3 && 
                         <div className={styles.booking__wrapper}>
                             <div className={styles.booking__tip}>
-                                At this step, you can see the total price of your booking.
+                                At this step, you have to attach all the necessary documents<br></br>
+                                (this documents should be in original format, when you came to dormitory to sign the contract)
                             </div>
                             <TotalPrice setNextActive={setNextActive} info={info}/>
-                            <div className={`${styles.next__button} ${nextActive && styles.active}`} onClick={nextHandler}>
-                                <div className={styles.next__button_text}>
-                                    NEXT
-                                </div>
-                                <div className={styles.next__button_img}>
-                                    <img src='arrrow-right.svg' />
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {
-                        bookingStep === 4 && 
-                        <div className={styles.booking__wrapper}>
-                            <div className={styles.booking__tip}>
-                                At this step, you can see the total price of your booking.
-                            </div>
-                            <BookingStep setNextActive={setNextActive} info={info}/>
-                            <div className={`${styles.next__button} ${nextActive && styles.active}`} onClick={nextHandler}>
-                                <div className={styles.next__button_text}>
-                                    CONFIRM
-                                </div>
-                                <div className={styles.next__button_img}>
-                                    <img src='arrrow-right.svg' />
-                                </div>
-                            </div>
-                        </div>
-                    }
-                    {
-                        bookingStep === 5 && 
-                        <div className={styles.booking__wrapper}>
-                            <div className={styles.booking__tip}>
-                                At this step, you have to attach all the necessary documents
-                                <br></br>(this documents should be in original format, when you came to dormitory to sign the contract)
-                            </div>
-                            <Confirm setNextActive={setNextActive} info={info}/>
                             <div className={`${styles.next__button} ${nextActive && styles.active}`} onClick={nextHandler}>
                                 <div className={styles.next__button_text}>
                                     CONFIRM

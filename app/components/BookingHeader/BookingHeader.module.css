@@ -7,7 +7,7 @@
     grid-template-columns: repeat(6, 1fr);
 }
 .booking__item{
-    width: 270px;
+    width: 345px;
     height: 82px;
     background: #6A6F7C;
     position: relative;
@@ -96,5 +96,5 @@
 }
 .booking__item_icon{
     position: relative;
-    left:30px;
+    left:80px;
 }

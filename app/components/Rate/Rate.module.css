@@ -6,6 +6,9 @@
 .selection__content{
     padding-left: 21px;
     border-right: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .selection__title{
     font-weight: 300;
@@ -54,5 +57,89 @@
     font-size: 15px;
     line-height: 18px;
     text-align: center;
+    color: #FFFFFF;
+}
+.total__info{
+    display: flex;
+    align-items: center;
+}
+.total__bed{
+    margin-right: 36px;
+}
+.total__bed img{
+    width: 114px;
+}
+.room__info_title, .room__info_text{
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 47px;
+    color: #FFFFFF;
+}
+.room__info{
+    max-width: 237px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap:30px;
+}
+.total__items{
+    margin-top: 41px;
+}
+.total__item{
+    display: flex;
+}
+.total__item_title{
+    background: rgba(8, 38, 115, 0.8);
+    border: 1px solid #000000;
+    max-width: 207px;
+    width: 100%;
+    padding-left:33px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    color: #FFFFFF;
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+.total__item_title li{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    color: #FFFFFF;
+}
+.total__item_text{
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+.total__item:last-child .total__item_title{
+    text-align: right;
+    padding-right: 7px;
+    width: calc(100% - 9px);
+}
+.total__item_text{
+    max-width: 207px;
+    width: 100%;
+    background:#fff;
+}
+.total__item_text{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    text-align: right;
+    padding-right: 19px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.kaspi{
+    display: flex;
+    align-items: center;
+    gap:15px;
+}
+.kaspi__instruction{
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 29px;
     color: #FFFFFF;
 }

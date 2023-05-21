@@ -18,7 +18,7 @@ const BookingHeader = ({bookingStep} : any) => {
                     </div>
                     <div className={`${styles.booking__item} ${styles.booking__item_shape} ${bookingStep === 2 && styles.active} ${bookingStep > 2  && styles.passed}`}>
                         <div className={styles.booking__item_title}>
-                            Choose Rate
+                            Total Price
                         </div>
                         {
                             bookingStep > 2 && 
@@ -27,28 +27,19 @@ const BookingHeader = ({bookingStep} : any) => {
                     </div>
                     <div className={`${styles.booking__item} ${styles.booking__item_shape} ${styles.booking__step_2} ${bookingStep === 3 && styles.active} ${bookingStep > 3 && styles.passed}`}>
                         <div className={styles.booking__item_title}>
-                            Total Price
+                            Attach Documents
                         </div>
                         {
                             bookingStep > 3 && 
                             <img src='confirm.svg' className={styles.booking__item_icon} />
                         }
                     </div>
-                    <div className={`${styles.booking__item} ${styles.booking__item_shape} ${styles.booking__step_3} ${bookingStep === 4 && styles.active} ${bookingStep > 4  && styles.passed}` }>
-                        <div className={styles.booking__item_title}>
-                            Booking
-                        </div>
-                        {
-                            bookingStep > 4 && 
-                            <img src='confirm.svg' className={styles.booking__item_icon} />
-                        }
-                    </div>
-                    <div className={`${styles.booking__item} ${styles.booking__item_shape} ${styles.booking__step_4} ${bookingStep === 5 && styles.active} ${bookingStep > 5  && styles.passed}`}>
+                    <div className={`${styles.booking__item} ${styles.booking__item_shape} ${styles.booking__step_4} ${bookingStep === 4 && styles.active} ${bookingStep > 4  && styles.passed}` }>
                         <div className={styles.booking__item_title}>
                             Confirm
                         </div>
                         {
-                            bookingStep > 5 && 
+                            bookingStep > 4 && 
                             <img src='confirm.svg' className={styles.booking__item_icon} />
                         }
                     </div>

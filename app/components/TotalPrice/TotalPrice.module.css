@@ -4,8 +4,10 @@
     margin:0 21px;
 }
 .selection__content{
-    padding-left: 21px;
     border-right: 1px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .selection__title{
     font-weight: 300;
@@ -26,7 +28,7 @@
     height: 575px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding-left: 42px;
 }
 .rate__items{
     display: flex;
@@ -105,4 +107,106 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+}
+.selection{
+    background: rgba(77, 108, 186, 0.5);
+    border: 1px solid #000000;
+    margin:0 21px;
+}
+.selection__content{
+    padding-left: 21px;
+    border-right: 1px solid #000;
+}
+.selection__title{
+    font-weight: 300;
+    font-size: 25px;
+    line-height: 29px;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+    padding-top: 27px;
+}
+.selection__wrapper{
+    display: flex;
+}
+.selection__content{
+    width: 50%;
+}
+
+.confirm__req{
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    padding: 26px 21px 30px;
+    width: fit-content;
+    margin-top: 39px;
+    margin-bottom: 58px;
+}
+.confirm__requirement_title{
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    margin-bottom: 20px;
+}
+.confirm__requirements{
+    margin-left: 15px;
+}
+.confirm__requirement{
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+}
+.confirm__inputs{
+    display: grid;
+    grid-template-columns: 1fr;
+    width:80%;
+}
+.confirm__input{
+    width: fit-content;
+}
+.confirm__items{
+    border: 1px solid #000000;
+}
+.confirm__item{
+    display: flex;
+}
+.confirm__item_title{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    color: #FFFFFF;
+    background: rgba(8, 38, 115, 0.8);
+    border: 1px solid #000000;
+    width: 207px;
+    padding: 9px 14px;
+}
+.confirm__item_title li {
+    width: 207px;
+    padding-top:4px;
+    padding-bottom: 4px;
+    margin-left:30px;
+    padding-right: 30px;
+}
+.confirm__item_value{
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    width: 207px;    
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+.confirm__input_label{
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    color: #FFFFFF;
+    margin-bottom: 7px;
+}
+.confirm__input{
+    margin-bottom: 20px;
 }
