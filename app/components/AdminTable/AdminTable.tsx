@@ -204,7 +204,7 @@ const AdminTable : FC = () => {
                     </div>
                 </div>
             </Modal>
-            <Modal open={addModal} footer={[]} className='addModal'>
+            <Modal open={addModal} footer={[]} className='addModal' onCancel={() => setAddModal(false)}>
                 <div className={styles.add__title}>
                     Adding New Student
                 </div>
