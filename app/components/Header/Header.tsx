@@ -1,6 +1,6 @@
 "use client"; 
 
-import { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import styles from './Header.module.css';
 import {Modal} from 'antd';
 import Link from 'next/link';
@@ -8,9 +8,8 @@ import { usePathname } from 'next/navigation';
 import Select from '../Select/Select';
 import { useRouter } from 'next/navigation';
 
-const Header: FC = () => {
+const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
     const [signupModal, setSignupModal] = useState<boolean>(false);
-    const [loginModal, setLoginModal] = useState<boolean>(false);
     const [resetPasswordModal, setResetPasswordModal] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>();
     const [selects, setSelects] = useState<any>([
@@ -73,6 +72,17 @@ const Header: FC = () => {
             answer:''
         }
     ]);
+    const [langOpen, setLangOpen] = useState<boolean>(false);
+    const [lang, setLang] = useState<string>('EN');
+    const [signup, setSignup] = useState({
+        id: '',
+        number: '',
+        name: '',
+        surname: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
 
     const pathname = usePathname();
     const router = useRouter();
@@ -124,9 +134,66 @@ const Header: FC = () => {
         window.location.reload();
     }
 
+    const langOpenHandler = () => {
+        setLangOpen(!langOpen);
+    }
+
+    const langChangeHandler = (lang : string) => {
+        setLang(lang);
+        setLangOpen(false);
+    }
+
+    const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>, type: string) => {
+        const inputValue = event.target.value;
+        if (type === 'id'){
+            const numericValue = inputValue.replace(/\D/g, '');
+            setSignup({...signup, id: numericValue});
+        }else if (type === 'number'){
+            const formattedPhoneNumber = formatPhoneNumber(inputValue);
+            setSignup({...signup, number: formattedPhoneNumber});
+        }
+    };
+
+    const loginInputChange = (event : React.ChangeEvent<HTMLInputElement>, type: string) => {
+        const inputValue = event.target.value;
+        if (type === 'id'){
+            const numericValue = inputValue.replace(/\D/g, '');
+            setLogin({...login, id: numericValue});
+        }else{
+        setLogin({...login, password: event.target.value})
+            
+        }
+    };
+
+    const formatPhoneNumber = (phoneNumber : string) => {
+        // Remove all non-numeric characters from the input
+        const numericPhoneNumber = phoneNumber.replace(/\D/g, '');
+
+        const formattedNumber = numericPhoneNumber.replace(
+          /^(\d{1})(\d{3})(\d{3})(\d{2})(\d{2})$/,
+          '+$1 ($2) $3 $4 $5'
+        );
+
+        return formattedNumber;
+    };
+
+    const loginCloseHandler = () => {
+        setLoginModal(false);
+        setLogin({
+            id:'',
+            password: ''
+        })
+    }
+
+    const signupCloseHandler = () => {
+        setSignupModal(false);
+        setSignup({...signup, password:'', confirmPassword:''})
+    }
+    
+
     return (
         <div className={styles.header}>
-            <Modal open={signupModal} width={582} onCancel={() => setSignupModal(false)} footer={[]}>
+            <Modal open={signupModal} width={582} onCancel={signupCloseHandler} footer={[]}>
                 <div className={styles.signup__wrapper}>
                     <div className={styles.signup__logo}>
                         <Link href='/'>
@@ -137,7 +204,7 @@ const Header: FC = () => {
                         Sign Up
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Student ID' />
+                        <input placeholder='Student ID' maxLength={9} onChange={(e) => handleInputChange(e, 'id')} value={signup?.id} />
                     </div>
                     <div className={styles.signup__input}>
                         <input placeholder='Firstname' />
@@ -149,7 +216,7 @@ const Header: FC = () => {
                         <input placeholder='Email' />
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Phone' />
+                        <input placeholder='Phone' maxLength={11} onChange={(e) => handleInputChange(e, 'number')} value={signup?.number}/>
                     </div>
                     <div className={styles.signup__input_selects}>
                         {
@@ -159,10 +226,10 @@ const Header: FC = () => {
                         } 
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Create your password' type='password' />
+                        <input placeholder='Create your password' type='password' value={signup?.password} onChange={(e) => setSignup({...signup, password: e.target.value})}/>
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Confirm your password' type='password' />
+                        <input placeholder='Confirm your password' type='password' value={signup?.confirmPassword} onChange={(e) => setSignup({...signup, confirmPassword: e.target.value})} />
                     </div>
                     <div className={styles.signup__button}>
                         Sign Up
@@ -172,7 +239,7 @@ const Header: FC = () => {
                     </div>
                 </div>
             </Modal>
-            <Modal open={loginModal} width={582} onCancel={() => setLoginModal(false)} footer={[]}>
+            <Modal open={loginModal} width={582} onCancel={loginCloseHandler} footer={[]}>
                 <div className={styles.signup__wrapper}>
                     <div className={styles.signup__logo}>
                         <img src='logo.png'/>
@@ -181,10 +248,10 @@ const Header: FC = () => {
                         Login
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='ID' value={login?.id} onChange={(e) => setLogin({...login, id: e.target.value})}/>
+                        <input placeholder='ID' value={login?.id} maxLength={9} onChange={(e) => loginInputChange(e, 'id')}/>
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Password' type='password' value={login?.password} onChange={(e) => setLogin({...login, password: e.target.value})} />
+                        <input placeholder='Password' type='password' value={login?.password} onChange={(e) => loginInputChange(e, 'password')} />
                     </div>
                     <div className={styles.login__link} onClick={forgotHandler}>
                         Forgotten your username or password?
@@ -252,12 +319,25 @@ const Header: FC = () => {
                         </div>
                     </div>
                     <div className={styles.header__wrapper_content}>
-                        <div className={styles.header__wrapper_lang}>
-                            <div className={styles.header__wrapper_lang_text}>
-                                EN
+                        <div>
+                            <div className={styles.header__wrapper_lang} onClick={langOpenHandler}>
+                                <div className={styles.header__wrapper_lang_text}>
+                                    {lang}
+                                </div>
+                                <div className={styles.header__wrapper_lang_arrow}>
+                                    <img src='arrow-down.svg' />
+                                </div>
                             </div>
-                            <div className={styles.header__wrapper_lang_arrow}>
-                                <img src='arrow-down.svg' />
+                            <div className={`${styles.header__langs} ${langOpen && styles.active}`}>
+                                <div className={styles.header__lang} onClick={() => langChangeHandler('KZ')}>
+                                    KZ
+                                </div>
+                                <div className={styles.header__lang} onClick={() => langChangeHandler('RU')}>
+                                    RU
+                                </div>
+                                <div className={styles.header__lang} onClick={() => langChangeHandler('EN')}>
+                                    EN
+                                </div>
                             </div>
                         </div>
                         {

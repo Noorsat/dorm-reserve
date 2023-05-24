@@ -3,7 +3,7 @@
 import styles from './Main.module.css';
 import {useState, useEffect} from 'react';
 
-const Main = () => {
+const Main = ({setLoginModal} : any) => {
     const [logged, setLogged] = useState<boolean>();
 
     useEffect(() => {
@@ -37,7 +37,7 @@ const Main = () => {
                             </div>
                         </div>
                         : 
-                        <div className={styles.main__button}>
+                        <div className={styles.main__button} onClick={() => setLoginModal(true)}>
                             START NOW
                         </div>
                     }

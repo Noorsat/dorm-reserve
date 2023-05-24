@@ -210,7 +210,7 @@ const AdminTable : FC = () => {
                 </div>
                 <div className={styles.signup__input}>
                     <input placeholder='Student ID' value={user?.id} onChange={(e) => setUser({...user, id: e.target.value})} />
-                </div>
+                </div>фзз
                 <div className={styles.signup__input}>
                     <input placeholder='Firstname' value={user?.name} onChange={(e) => setUser({...user, name:  e.target.value})} />
                 </div>
