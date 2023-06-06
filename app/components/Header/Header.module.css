@@ -131,6 +131,7 @@
     max-width: 394px;
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
 }
 .signup__link{
     font-weight: 400;

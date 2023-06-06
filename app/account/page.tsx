@@ -1,10 +1,13 @@
 import EditPasswordForm from '../components/EditPasswordForm/EditPasswordForm';
+import Header from '../components/Header/Header';
 import ProfileEditForm from '../components/ProfileEditForm/ProfileEditForm';
 import styles from './Account.module.css';
 
 const Account = () => {
     return (
-        <div className={styles.account}>
+        <>
+            <Header />
+         <div className={styles.account}>
             <div className='container'>
                 <div className={styles.account__header}>
                     <div className={styles.account__header_img}>
@@ -21,6 +24,7 @@ const Account = () => {
    
             </div>
         </div>
+        </>
     )
 }
 

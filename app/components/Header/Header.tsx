@@ -2,11 +2,15 @@
 
 import React, { FC, useEffect, useState } from 'react'
 import styles from './Header.module.css';
-import {Modal} from 'antd';
+import {Modal, notification} from 'antd';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Select from '../Select/Select';
 import { useRouter } from 'next/navigation';
+import { sign } from 'crypto';
+import { createUser, tryLogin } from '@/app/http/auth';
+import { getBeds } from '@/app/http/beds';
+import { responsiveArray } from 'antd/es/_util/responsiveObserver';
 
 const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
     const [signupModal, setSignupModal] = useState<boolean>(false);
@@ -75,13 +79,17 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
     const [langOpen, setLangOpen] = useState<boolean>(false);
     const [lang, setLang] = useState<string>('EN');
     const [signup, setSignup] = useState({
-        id: '',
-        number: '',
-        name: '',
-        surname: '',
+        studentId: '',
+        firstname: '',
+        lastname: '',
+        phone: '',
         email: '',
         password: '',
         confirmPassword: ''
+    });
+    const [login, setLogin] = useState({
+        username: "",
+        password: ""
     });
 
     const pathname = usePathname();
@@ -97,8 +105,6 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
             router.push("/")
         }
     }, [pathname])
-
-    const [login, setLogin] = useState<any>({});
 
     const loginOpenHandler = () => {
         setLoginModal(true);
@@ -121,12 +127,29 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
     }
     
     const loginHandler = () => {
-        if (login?.id === '190103056' && login?.password === '1234'){
-            setIsLogin(true);
-            setLoginModal(false)
-            localStorage.setItem('logged', 'ok');
-            window.location.reload()
+        if (!(login.username && login.password)){
+            notification["error"]({
+                message: "Fill in all the fields"
+            })
         }
+
+        tryLogin(login).then((res) => {
+            if (res.status === 200){
+                notification["success"]({
+                    message:"You successfully logged into your account"
+                })
+                setIsLogin(true);
+                setLoginModal(false);
+                setLogin({
+                    username: "",
+                    password: ""
+                })
+            }
+        }).catch((res) => {
+            notification["error"]({
+                message: res.response.data
+            })
+        })
     }
 
     const logoutHandler = () => {
@@ -145,24 +168,20 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
 
     const handleInputChange = (event : React.ChangeEvent<HTMLInputElement>, type: string) => {
         const inputValue = event.target.value;
-        if (type === 'id'){
+        if (type === 'studentId'){
             const numericValue = inputValue.replace(/\D/g, '');
-            setSignup({...signup, id: numericValue});
-        }else if (type === 'number'){
+            setSignup({...signup, studentId: numericValue});
+        }else if (type === 'phone'){
             const formattedPhoneNumber = formatPhoneNumber(inputValue);
-            setSignup({...signup, number: formattedPhoneNumber});
+            setSignup({...signup, phone: formattedPhoneNumber});
+        }else{
+            setSignup({...signup, [type]: inputValue})
         }
     };
 
     const loginInputChange = (event : React.ChangeEvent<HTMLInputElement>, type: string) => {
         const inputValue = event.target.value;
-        if (type === 'id'){
-            const numericValue = inputValue.replace(/\D/g, '');
-            setLogin({...login, id: numericValue});
-        }else{
-        setLogin({...login, password: event.target.value})
-            
-        }
+        setLogin({...login, [type] : inputValue})
     };
 
     const formatPhoneNumber = (phoneNumber : string) => {
@@ -180,7 +199,7 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
     const loginCloseHandler = () => {
         setLoginModal(false);
         setLogin({
-            id:'',
+            username:'',
             password: ''
         })
     }
@@ -188,6 +207,48 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
     const signupCloseHandler = () => {
         setSignupModal(false);
         setSignup({...signup, password:'', confirmPassword:''})
+    }
+
+    const signupHandler = () => {
+        if (!(signup.studentId && signup.firstname && signup.lastname && signup.email && signup.phone && signup.password && signup.confirmPassword && selects[0].answer && selects[1].answer && selects[2].answer)){
+            return notification["error"]({
+                message: "Fill in all the fields"
+            })
+        } 
+        if (signup?.password != signup?.confirmPassword){
+            return notification["error"]({
+                message: "Two passwords not same"
+            })
+        }
+        
+        let body =  { ...signup, program: selects[0]?.answer, course: selects[1]?.answer, userGender: "USER"+(selects[2]?.answer)?.toUpperCase()};
+
+        createUser(body).then((res) => {
+            if (res.status === 200){
+                notification["success"]({
+                    message: "You have successfully created an account"
+                })
+                setIsLogin(true);
+                setSignupModal(false);
+                localStorage.setItem('logged', 'ok');
+                setSignup({
+                    studentId: '',
+                    firstname: '',
+                    lastname: '',
+                    phone: '',
+                    email: '',
+                    password: '',
+                    confirmPassword: ''
+                });
+            }
+        }).catch((res) => {
+            console.log(res.response.data.includes("email taken"))
+            if (res.response.data.includes("email taken")){
+                notification["error"]({
+                    message: "This email is used"
+                })
+            }
+        })
     }
     
 
@@ -204,19 +265,19 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                         Sign Up
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Student ID' maxLength={9} onChange={(e) => handleInputChange(e, 'id')} value={signup?.id} />
+                        <input placeholder='Student ID' maxLength={9} onChange={(e) => handleInputChange(e, 'studentId')} value={signup?.studentId} />
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Firstname' />
+                        <input placeholder='Firstname' onChange={(e) => handleInputChange(e, "firstname")} value={signup?.firstname} />
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Lastname' />
+                        <input placeholder='Lastname' onChange={(e) => handleInputChange(e, "lastname")} value={signup?.lastname} />
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Email' />
+                        <input placeholder='Email' onChange={(e) => handleInputChange(e, "email")} value={signup?.email}/>
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='Phone' maxLength={11} onChange={(e) => handleInputChange(e, 'number')} value={signup?.number}/>
+                        <input placeholder='Phone' maxLength={11} onChange={(e) => handleInputChange(e, 'phone')} value={signup?.phone}/>
                     </div>
                     <div className={styles.signup__input_selects}>
                         {
@@ -231,7 +292,7 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                     <div className={styles.signup__input}>
                         <input placeholder='Confirm your password' type='password' value={signup?.confirmPassword} onChange={(e) => setSignup({...signup, confirmPassword: e.target.value})} />
                     </div>
-                    <div className={styles.signup__button}>
+                    <div className={styles.signup__button} onClick={signupHandler}>
                         Sign Up
                     </div>
                     <div className={styles.signup__link}>
@@ -248,7 +309,7 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                         Login
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='ID' value={login?.id} maxLength={9} onChange={(e) => loginInputChange(e, 'id')}/>
+                        <input placeholder='Email' value={login?.username} onChange={(e) => loginInputChange(e, 'username')}/>
                     </div>
                     <div className={styles.signup__input}>
                         <input placeholder='Password' type='password' value={login?.password} onChange={(e) => loginInputChange(e, 'password')} />
@@ -273,13 +334,13 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                         Forgot password?
                     </div>
                     <div className={styles.reset__text}>
-                        To start password reset process please enter the student ID given to you by University.
+                        To start password reset process please enter the email given to you by University.
                     </div>
                     <div className={styles.signup__input}>
-                        <input placeholder='ID' value={login?.id} onChange={(e) => setLogin({...login, id: e.target.value})}/>
+                        <input placeholder='Email' value={login?.username} onChange={(e) => setLogin({...login, username: e.target.value})}/>
                     </div>
                     <div className={styles.reset__example}>
-                        Example student number: 150101001
+                        Example: 150101001@stu.sdu.edu.kz
                     </div>
                     <div className={styles.signup__button} onClick={loginHandler}>
                         Continue

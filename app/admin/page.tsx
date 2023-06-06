@@ -2,6 +2,7 @@
 
 import {FC, useState} from 'react';
 import AdminTable from '../components/AdminTable/AdminTable';
+import Header from '../components/Header/Header';
 import SupervisorDrawer from '../components/SupervisorDrawer/SupervisorDrawer';
 import styles from './Admin.module.css';
 
@@ -9,7 +10,9 @@ const Admin = () => {
     const [selectedTab, setSelectedTab] = useState();
 
     return (
-        <div className={styles.admin}>
+        <>
+            <Header />
+            <div className={styles.admin}>
             <div className={styles.admin__wrapper}>
                 <SupervisorDrawer setSelectedTab={setSelectedTab} />
                 {
@@ -43,6 +46,7 @@ const Admin = () => {
                 }
             </div>
         </div>
+        </>
     )
 }
 

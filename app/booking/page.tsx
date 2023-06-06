@@ -11,6 +11,7 @@ import { IInfo } from './types';
 import BookingStep from '../components/BookingStep/BookingStep';
 import { useRouter } from 'next/navigation';
 import Confirm from '../components/Confirm/Confirm';
+import Header from '../components/Header/Header';
 
 const Booking: FC = () => {
     const [nextActive, setNextActive] = useState<boolean>(false);
@@ -56,7 +57,7 @@ const Booking: FC = () => {
         setBookingModal(false);
         setBookingStep(bookingStep+1);
         setSuccessModal(true);
-        setNextActive(false)
+        setNextActive(false);
     }
 
     const successCancelHandler = () => {
@@ -65,6 +66,7 @@ const Booking: FC = () => {
 
     return (
         <div>
+            <Header />
             <Modal open={totalModal} footer={[]} className='bookingModal' onCancel={() => setTotalModal(false)}>
                 <div className={styles.question__title}>
                     Are you sure, 
