@@ -109,19 +109,19 @@ const Rate : FC<any>  = ({setNextActive, info} : any) => {
                                 Payment instruction:
                             </div>
                             <div className={styles.kaspi__instruction}>
-                                1.open Kaspi.kz
+                                1. Open Kaspi.kz app in your smartphone
                             </div>
                             <div className={styles.kaspi__instruction}>
-                                2.go to Платежи
+                                2. Go to "Платежи" 
                             </div>
                             <div className={styles.kaspi__instruction}>
-                                3.click Образование
+                                3. Click to "Образование" 
                             </div>
                             <div className={styles.kaspi__instruction}>
-                                4.click Вузы и Колледжи
+                                4. Click to "Вузы и Колледжи" 
                             </div>
                             <div className={styles.kaspi__instruction}>
-                                5.fill the form like this example:
+                                5. Fill out the form as shown in example:
                             </div>
                         </div>
                         <div className={styles.kaspi__image}>

@@ -57,6 +57,9 @@ table {
 .bookingModal .ant-modal-close{
 	display: block!important;
 }
+.faqModal .ant-modal-close{
+	display: block!important;
+}
 .ant-modal{
 	top:30px!important;
 }

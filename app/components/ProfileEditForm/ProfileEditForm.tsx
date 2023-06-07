@@ -1,6 +1,19 @@
 import styles from './ProfileEditForm.module.css'
 
-const ProfileEditForm = () => {
+const ProfileEditForm = ({user} : any) => {
+
+    const getProgram = (program : string) => {
+        if (program == 'BS'){
+            return "Business School";
+        }else if (program === "ENS"){
+            return "Engineering and Natural Sciences"
+        }else if (program === "EH"){
+            return "Education an Humanities"
+        }else if (program === "LSS"){
+            return "Law and Social Sciences";
+        }
+    }
+
     return (
         <div className={styles.form}>
             <div className={styles.form__title}>
@@ -12,7 +25,7 @@ const ProfileEditForm = () => {
                         ID:
                     </div>
                     <div className={styles.form__item_input}>
-                        190103477
+                        {user?.id}
                     </div>
                 </div>
                 <div className={styles.form__item}>
@@ -20,7 +33,7 @@ const ProfileEditForm = () => {
                         Email Address:  
                     </div>
                     <div className={styles.form__item_input}>
-                        190103477@sdu.stu.edu.kz
+                        {user?.username}
                     </div>
                 </div>
                 <div className={styles.form__item}>
@@ -28,23 +41,23 @@ const ProfileEditForm = () => {
                         Phone Number:         
                     </div>
                     <div className={styles.form__item_input}>
-                        +77472952998
+                        {user?.phone}
                     </div>
                 </div>
-                <div className={styles.form__item}>
+                {/* <div className={styles.form__item}>
                     <div className={styles.form__item_text}>
                         Birth Date:         
                     </div>
                     <div className={styles.form__item_input}>
                         13.01.2002
                     </div>
-                </div>
+                </div> */}
                 <div className={styles.form__item}>
                     <div className={styles.form__item_text}>
                         Course, specialty:     
                     </div>
                     <div className={styles.form__item_input}>
-                        4th, Information Systems
+                        {user?.course} Course, {getProgram(user?.program)}
                     </div>
                 </div>
                 <div className={styles.form__item}>
@@ -52,7 +65,7 @@ const ProfileEditForm = () => {
                         Balance:      
                     </div>
                     <div className={styles.form__item_input}>
-                        0 T
+                        {user?.balance || 0} T
                     </div>
                 </div>
             </div>

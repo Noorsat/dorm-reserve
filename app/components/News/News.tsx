@@ -13,12 +13,12 @@ const News : FC = () => {
                                     LATEST NEWS
                                 </div>
                                 <div className={styles.news__header_text}>
-                                    <div className={styles.news__header_text_content}>
+                                    {/* <div className={styles.news__header_text_content}>
                                         View all news
-                                    </div>
-                                    <div className={styles.news__header_text_icon}>
+                                    </div> */}
+                                    {/* <div className={styles.news__header_text_icon}>
                                         <img src='arrow-right.svg'/>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -52,12 +52,12 @@ const News : FC = () => {
                                     UPCOMING EVENTS
                                 </div>
                                 <div className={styles.news__header_text}>
-                                    <div className={styles.news__header_text_content}>
+                                    {/* <div className={styles.news__header_text_content}>
                                         View Calendar Events
-                                    </div>
-                                    <div className={styles.news__header_text_icon}>
+                                    </div> */}
+                                    {/* <div className={styles.news__header_text_icon}>
                                         <img src='arrow-right.svg'/>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

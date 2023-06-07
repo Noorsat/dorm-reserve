@@ -26,7 +26,7 @@ const Rooms = () => {
                     </div>
                     <div className={styles.rooms__item}>
                         <div className={styles.rooms_item_img}>
-                            <img src='rooms-3.png' />
+                            <img src='rooms-8.png' />
                         </div>
                         <div className={styles.rooms_item_text}>
                             Lounge area
@@ -50,10 +50,10 @@ const Rooms = () => {
                     </div>
                     <div className={styles.rooms__item}>
                         <div className={styles.rooms_item_img}>
-                            <img src='rooms-6.png' />
+                            <img src='rooms-3.png' />
                         </div>
                         <div className={styles.rooms_item_text}>
-                            Lounge area
+                            Lounge room
                         </div>
                     </div>
                     <div className={styles.rooms__item}>
@@ -66,7 +66,7 @@ const Rooms = () => {
                     </div>
                     <div className={styles.rooms__item}>
                         <div className={styles.rooms_item_img}>
-                            <img src='rooms-8.png' />
+                            <img src='rooms-12.png' />
                         </div>
                         <div className={styles.rooms_item_text}>
                             Conference room
@@ -74,7 +74,7 @@ const Rooms = () => {
                     </div>
                     <div className={styles.rooms__item}>
                         <div className={styles.rooms_item_img}>
-                            <img src='rooms-9.png' />
+                            <img src='rooms-6.png' />
                         </div>
                         <div className={styles.rooms_item_text}>
                             Chees
@@ -82,7 +82,7 @@ const Rooms = () => {
                     </div>
                     <div className={styles.rooms__item}>
                         <div className={styles.rooms_item_img}>
-                            <img src='rooms-10.png' />
+                            <img src='rooms-9.png' />
                         </div>
                         <div className={styles.rooms_item_text}>
                             Tennis
@@ -90,7 +90,7 @@ const Rooms = () => {
                     </div>
                     <div className={styles.rooms__item}>
                         <div className={styles.rooms_item_img}>
-                            <img src='rooms-11.png' />
+                            <img src='rooms-10.png' />
                         </div>
                         <div className={styles.rooms_item_text}>
                             Volleyball area
@@ -98,7 +98,7 @@ const Rooms = () => {
                     </div>
                     <div className={styles.rooms__item}>
                         <div className={styles.rooms_item_img}>
-                            <img src='rooms-12.png' />
+                            <img src='rooms-11.png' />
                         </div>
                         <div className={styles.rooms_item_text}>
                             Basketball area

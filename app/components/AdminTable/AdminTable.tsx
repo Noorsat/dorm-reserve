@@ -3,7 +3,7 @@ import styles from './AdminTable.module.css';
 import {Checkbox, Modal} from 'antd';
 import Select from '../Select/Select';
 
-const AdminTable : FC = () => {
+const AdminTable : FC<any> = ({users} : any) => {
     const [editMode, setEditMode] = useState<boolean>(false);
     const [selectedUsers, setSelectedUsers] = useState<any>([]);
     const [deleteModal, setDeleteModal] = useState<boolean>(false);
@@ -82,45 +82,6 @@ const AdminTable : FC = () => {
         setEditMode(true);
     }
 
-    const users = [
-        {
-            id: '190103477',
-            name: 'Inabat',
-            surname: 'Aimukhanbetova',
-            email:'190103477@stu.sdu.edu.kz',
-            number: '87472952998',
-            faculty:'ENS',
-            course:'4',
-            gender:'F',
-            balance:'360000',
-            place: 'A-201-01'
-        },
-        {
-            id: '190103478',
-            name: 'Inabat',
-            surname: 'Aimukhanbetova',
-            email:'190103477@stu.sdu.edu.kz',
-            number: '87472952998',
-            faculty:'ENS',
-            course:'4',
-            gender:'F',
-            balance:'360000',
-            place: 'A-201-01'
-        },
-        {
-            id: '190103479',
-            name: 'Inabat',
-            surname: 'Aimukhanbetova',
-            email:'190103477@stu.sdu.edu.kz',
-            number: '87472952998',
-            faculty:'ENS',
-            course:'4',
-            gender:'F',
-            balance:'360000',
-            place: 'A-201-01'
-        },
-    ]
-
     const userSelectHandler = (index : number) => {
         let user = users[index];
         
@@ -159,6 +120,18 @@ const AdminTable : FC = () => {
             return true;
         }else{
             return false;
+        }
+    }
+
+    const getProgram = (program : string) => {
+        if (program == 'BS'){
+            return "Business School";
+        }else if (program === "ENS"){
+            return "Engineering and Natural Sciences"
+        }else if (program === "EH"){
+            return "Education an Humanities"
+        }else if (program === "LSS"){
+            return "Law and Social Sciences";
         }
     }
 
@@ -321,12 +294,12 @@ const AdminTable : FC = () => {
                             </td>
                             <td className={`${editMode && styles.td__active}`}>
                                 <div className={`${styles.table__text} ${editMode && styles.active}`}>
-                                    {user?.name}
+                                    {user?.firstname}
                                 </div>
                             </td>
                             <td className={`${editMode && styles.td__active}`}>
                                 <div className={`${styles.table__text} ${editMode && styles.active}`}>
-                                    {user?.surname}
+                                    {user?.lastname}
                                 </div>
                             </td>
                             <td className={`${editMode && styles.td__active}`}>
@@ -336,12 +309,12 @@ const AdminTable : FC = () => {
                             </td>
                             <td className={`${editMode && styles.td__active}`}>
                                 <div className={`${styles.table__text} ${editMode && styles.active}`}>
-                                    {user?.number}
+                                    {user?.phone}
                                 </div>
                             </td>
                             <td className={`${editMode && styles.td__active}`}>
                                 <div className={`${styles.table__text} ${editMode && styles.active}`}>
-                                    {user?.faculty}
+                                    {getProgram(user?.program)}
                                 </div>
                             </td>
                             <td className={`${editMode && styles.td__active}`}>
@@ -356,12 +329,12 @@ const AdminTable : FC = () => {
                             </td>
                             <td className={`${editMode && styles.td__active}`}> 
                                 <div className={`${styles.table__text} ${editMode && styles.active}`}>
-                                    {user?.balance}
+                                    {user?.balance || 0}
                                 </div>
                             </td>
                             <td className={`${editMode && styles.td__active}`}>
                                 <div className={`${styles.table__text} ${editMode && styles.active}`}>
-                                    {user?.balance}
+                                    {user?.bed}
                                 </div>
                             </td>
                         </tr>

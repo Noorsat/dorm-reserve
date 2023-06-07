@@ -7,15 +7,67 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Select from '../Select/Select';
 import { useRouter } from 'next/navigation';
-import { sign } from 'crypto';
 import { createUser, tryLogin } from '@/app/http/auth';
-import { getBeds } from '@/app/http/beds';
-import { responsiveArray } from 'antd/es/_util/responsiveObserver';
+import * as Scroll from 'react-scroll';
+import parse from 'html-react-parser';
+
 
 const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
     const [signupModal, setSignupModal] = useState<boolean>(false);
     const [resetPasswordModal, setResetPasswordModal] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>();
+    const [faqModal, setFaqModal] = useState<boolean>();
+    const [faqData, setFaqData] = useState<any>(
+        [
+            {
+                question: 'How can I apply for dormitory registration?',
+                answer: '- To apply for registration in a dormitory, you need to register on this site, indicating all the necessary data.',
+                isOpen: false
+            },
+            {
+                question: 'What documents do I need to provide at the dormitory?',
+                answer: `- You may be required to provide the following documents: 
+                <br>4 photos 3х4 
+                <br>Copy of medical report 075 (obtainable from any Kazakh clinic) 
+                <br>Copy of identity card 
+                <br>Copy of payment receipt
+                `,
+                html: true,
+                isOpen: false
+            },
+            {
+                question: 'What are the living conditions in the dormitory?',
+                answer: '- The dormitory is equipped with the necessary furniture and household appliances, as well as cleaning and laundry services. If desired, for an additional fee, the services of a gym, an aerobics room and a trainer are provided.',
+                isOpen: false
+            },
+            {
+                question: 'Can I stay in the dormitory during holidays?',
+                answer: '- Usually, during the holidays, the dormitories of the university are completely closed, so students cannot live in the dormitory during the holidays. However, in some cases it is possible to obtain permission to live in a dormitory during the holidays, for example, if the student is engaged in scientific research or other academic projects.',
+                isOpen: false
+            },
+            {
+                question: 'How often is the dormitory cleaned?',
+                answer: '- The dormitory is cleaned regularly. Usually, cleaning is carried out every day by the staff of the dormitory.',
+                isOpen: false
+            },
+            {
+                question: 'Can I live in a dormitory with a friend?',
+                answer: '- This request is not considered by the dormitory. However, after registration, you can make a booking together with a friend and choose one room to stay, subject to availability.',
+                isOpen: false
+            },
+            {
+                question: 'How can I pay for accommodation in a dormitory?',
+                answer: '- Payment for accommodation in the dormitory is carried out through a bank transfer. ',
+                isOpen: false
+            },
+            {
+                question: 'How can I contact the dormitory administration if I have any problems?',
+                answer: '- To contact the dormitory administration, you can use the contact details listed on the university website, or contact the dormitory reception.',
+                isOpen: false
+            },
+        ]
+    )
+    let ScrollLink = Scroll.Link;
     const [selects, setSelects] = useState<any>([
         {
             title: 'Faculty',
@@ -26,7 +78,7 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                 },
                 {
                     title:'Engineering and Natural Sciences',
-                    text: 'ENS'
+                    text: 'ENS' 
                 },
                 {
                     title:'Education an Humanities',
@@ -144,6 +196,8 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                     username: "",
                     password: ""
                 })
+                window.localStorage.setItem("logged", "ok");
+                localStorage.setItem("email", login.username)
             }
         }).catch((res) => {
             notification["error"]({
@@ -231,6 +285,7 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                 setIsLogin(true);
                 setSignupModal(false);
                 localStorage.setItem('logged', 'ok');
+                localStorage.setItem('email', signup?.email);
                 setSignup({
                     studentId: '',
                     firstname: '',
@@ -249,6 +304,27 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                 })
             }
         })
+    }
+
+    const faqSwitchHandler = (index : number) => {
+        const isOpen = faqData?.filter((item : any, i : number) => index == i)[0]?.isOpen;
+        if (isOpen){
+            setFaqData(faqData.map((faq : any, i : number) => {
+                if (i === index){
+                    faq.isOpen = false;
+                }
+                return faq;
+            }))
+        }else{
+            setFaqData(faqData.map((faq : any, i : number) => {
+                if (i === index){
+                    faq.isOpen = true;
+                }else{
+                    faq.isOpen = false;
+                }
+                return faq;
+            }))
+        }
     }
     
 
@@ -300,6 +376,34 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                     </div>
                 </div>
             </Modal>
+            <Modal open={faqModal} width={786} className="faqModal" onCancel={() => setFaqModal(false)} footer={[]}>
+                <div className={styles.faq__title}>
+                    Frequently Asked Questions:
+                </div>
+                <div className={styles.faq__items}>
+                    {
+                        faqData?.map((faq : any, index: number) => (
+                            <div className={styles.faq__item}>
+                                <div className={styles.faq__item_wrapper} onClick={() => faqSwitchHandler(index)}>
+                                    <div className={styles.faq__item_title}>
+                                        {faq?.question}
+                                    </div>
+                                    <div className={styles.faq__item_icon}>
+                                        <img src={faq?.isOpen ? 'faq-arrow.svg' : 'faq-plus.svg'} />
+                                    </div>
+                                </div>
+                                {
+                                    faq?.isOpen && (
+                                        <div className={`${styles.faq__item_text} ${faq?.isOpen ? styles.faq__item_text_active : ''}`}>
+                                            {parse(faq?.answer)}
+                                        </div>
+                                    )
+                                }
+                            </div>
+                        ))
+                    }
+                </div>
+            </Modal>   
             <Modal open={loginModal} width={582} onCancel={loginCloseHandler} footer={[]}>
                 <div className={styles.signup__wrapper}>
                     <div className={styles.signup__logo}>
@@ -315,7 +419,7 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                         <input placeholder='Password' type='password' value={login?.password} onChange={(e) => loginInputChange(e, 'password')} />
                     </div>
                     <div className={styles.login__link} onClick={forgotHandler}>
-                        Forgotten your username or password?
+                        Forgot your username or password?
                     </div>
                     <div className={styles.signup__button} onClick={loginHandler}>
                         Login
@@ -364,18 +468,19 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                             </Link>
                         </div>
                         <div className={styles.header__wrapper_item}>
-                            About us
+                            <ScrollLink to="aboutus" spy={true} smooth={true} offset={-100} duration={500} style={{cursor:"pointer"}}>
+                                About us
+                            </ScrollLink>
                         </div>
                         <div className={styles.header__wrapper_item}>
                             <Link href='/booking'>Booking</Link>
                         </div>
                         <div className={styles.header__wrapper_item}>
-                            Extra services
+                            <ScrollLink to="contact" spy={true} smooth={true} offset={-100} duration={500} style={{cursor:"pointer"}}>
+                                Contact us
+                            </ScrollLink>
                         </div>
-                        <div className={styles.header__wrapper_item}>
-                            Contact us
-                        </div>
-                        <div className={styles.header__wrapper_item}>
+                        <div className={styles.header__wrapper_item} onClick={() => setFaqModal(true)}>
                             FAQ
                         </div>
                     </div>

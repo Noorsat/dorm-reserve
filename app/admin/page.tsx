@@ -1,13 +1,21 @@
 "use client"
 
-import {FC, useState} from 'react';
+import {FC, useState, useEffect} from 'react';
 import AdminTable from '../components/AdminTable/AdminTable';
 import Header from '../components/Header/Header';
 import SupervisorDrawer from '../components/SupervisorDrawer/SupervisorDrawer';
+import { getUsers } from '../http/auth';
 import styles from './Admin.module.css';
 
 const Admin = () => {
     const [selectedTab, setSelectedTab] = useState();
+    const [users, setUsers] = useState<any>();
+
+    useEffect(() => {
+        getUsers().then((res) => {
+            setUsers(res.data);
+        })
+    }, [])
 
     return (
         <>
@@ -42,7 +50,7 @@ const Admin = () => {
                     </div>
                 }
                 {
-                    selectedTab && <AdminTable />
+                    selectedTab && <AdminTable users={users || []} />
                 }
             </div>
         </div>

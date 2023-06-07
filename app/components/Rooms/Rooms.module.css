@@ -21,6 +21,9 @@
 .rooms_item_img{
     margin-bottom: 20px;
 }
+.rooms__item{
+    cursor: pointer;
+}
 .rooms__item:nth-child(-n+8){
     margin-bottom: 41px;
 }
