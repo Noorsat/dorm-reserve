@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Select from '../Select/Select';
 import { useRouter } from 'next/navigation';
-import { createUser, tryLogin } from '@/app/http/auth';
+import { createUser, getUsers, tryLogin } from '@/app/http/auth';
 import * as Scroll from 'react-scroll';
 import parse from 'html-react-parser';
 
@@ -197,7 +197,11 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                     password: ""
                 })
                 window.localStorage.setItem("logged", "ok");
-                localStorage.setItem("email", login.username)
+                localStorage.setItem("email", login.username);
+                getUsers().then((res) => {
+                    let user = res.data.filter((item : any)  => item?.email === login?.username)[0];
+                    localStorage.setItem("id", user?.id)
+                })
             }
         }).catch((res) => {
             notification["error"]({

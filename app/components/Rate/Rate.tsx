@@ -76,7 +76,7 @@ const Rate : FC<any>  = ({setNextActive, info} : any) => {
                                     <li>Bedroom</li>
                                 </ul>
                                 <div className={styles.total__item_text}>
-                                    260000
+                                    362000
                                 </div>
                             </div>
                             <div className={styles.total__item}>
@@ -91,8 +91,8 @@ const Rate : FC<any>  = ({setNextActive, info} : any) => {
                                 <div className={styles.total__item_title}>
                                     Total Price:    
                                 </div>
-                                <div className={styles.total__item_text}>
-                                    325000
+                                <div className={styles.total__item_text} style={{fontWeight:900}}>
+                                    377000
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@ const Rate : FC<any>  = ({setNextActive, info} : any) => {
                 </div>
                 <div className={styles.selection__map}>
                     <div className={styles.kaspi}>
-                        <div className={styles.kaspi__instructions}>
+                        <div className={styles.kaspi__instructions} style={{paddingLeft:16}}>
                             <div className={styles.kaspi__instruction}>
                                 Payment instruction:
                             </div>
@@ -124,7 +124,7 @@ const Rate : FC<any>  = ({setNextActive, info} : any) => {
                                 5. Fill out the form as shown in example:
                             </div>
                         </div>
-                        <div className={styles.kaspi__image}>
+                        <div className={styles.kaspi__image} style={{paddingRight:50}}>
                             <img src='kaspi.png' />
                         </div>
                     </div>

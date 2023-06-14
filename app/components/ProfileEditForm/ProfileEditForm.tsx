@@ -68,6 +68,14 @@ const ProfileEditForm = ({user} : any) => {
                         {user?.balance || 0} T
                     </div>
                 </div>
+                <div className={styles.form__item}>
+                    <div className={styles.form__item_text}>
+                        Room:      
+                    </div>
+                    <div className={styles.form__item_input}>
+                        {user?.bedId}
+                    </div>
+                </div>
             </div>
             <div className={styles.form__button}>
                 Edit profile

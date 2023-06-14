@@ -8,7 +8,7 @@ import SelectionStepSecond from '../SelectionSteps/SelectionStepSecond/Selection
 import SelectionStepThird from '../SelectionSteps/SelectionStepThird/SelectionStepThird';
 import styles from './Selection.module.css';
 
-const Selection: FC<any> = ({setNextActive, setInfo, info}: any) => {
+const Selection: FC<any> = ({setNextActive, setInfo, info, beds}: any) => {
     const [currentStep, setCurrentStep] = useState<number>(1);
 
     const [firstStep, setFirstStep] = useState<any>(
@@ -164,7 +164,7 @@ const Selection: FC<any> = ({setNextActive, setInfo, info}: any) => {
             break;
             case 3: return <SelectionStepThird answer={thirdStep?.answer}/>
             break;
-            case 4: return <SelectionStepForth answer={forthStep?.answer}/>
+            case 4: return <SelectionStepForth answer={forthStep?.answer} beds={beds} info={info}/>
             break;
         }
     }
@@ -207,7 +207,7 @@ const Selection: FC<any> = ({setNextActive, setInfo, info}: any) => {
                             <div className={styles.selection__title}> 
                                 Select Bed:
                             </div>
-                            <SelectionSelect select={forthStep} setSelect={setForthStep} setCurrentStep={setCurrentStep} step={4} setNextActive={setNextActive} />
+                            <SelectionSelect select={forthStep} setSelect={setForthStep} setCurrentStep={setCurrentStep} step={4} setNextActive={setNextActive} beds={beds} info={info}/>
                         </div>
                     }
                 </div>

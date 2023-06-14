@@ -1,17 +1,33 @@
+import { notification } from 'antd';
 import {FC} from 'react';
 import styles from './SelectionSelect.module.css';
 
-const SelectionSelect : FC<any> = ({select, setSelect, setCurrentStep, step, setNextActive,} : any) => {
+const SelectionSelect : FC<any> = ({select, setSelect, setCurrentStep, step, setNextActive, beds, info} : any) => {
+   
+    const roomId = info?.block?.split(" ")[1] + "-" + info?.floor?.split(" ")[1] + "" + info?.room?.split(" ")[1];
+
+    const notFreeBeds = beds?.filter((bed : any)=> bed.id.includes(roomId));
     
+    const checkBed = (bedNumber : number) => {
+        return notFreeBeds && notFreeBeds?.some((bed : any ) => bed?.bedNumber === bedNumber);
+    }  
+
     const optionsOpenHandler = () => {
         setSelect({...select,  open: !select.open})
     }
 
     const optionChooseHandler = (title: string) => {
-        const answer = String(select?.title.split(" ")[1]).charAt(0).toUpperCase() + "" + String(select?.title.split(" ")[1]).substring(1) + " " + title;
-        setSelect({...select, answer: answer, open: false})
-        setCurrentStep(step);
-        setNextActive && setNextActive(true);
+        if (step === 4 && checkBed(Number(title))){
+            notification["error"]({
+                message:"This bed already taken!"
+            })
+        }else{
+            const answer = String(select?.title.split(" ")[1]).charAt(0).toUpperCase() + "" + String(select?.title.split(" ")[1]).substring(1) + " " + title;
+            setSelect({...select, answer: answer, open: false})
+            setCurrentStep(step);
+            setNextActive && setNextActive(true);
+        }
+
     }
 
     return (

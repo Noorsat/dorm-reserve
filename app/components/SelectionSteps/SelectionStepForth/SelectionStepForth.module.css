@@ -54,6 +54,10 @@
     width: fit-content;
     margin:0 auto;
 }
+.selection__item_number.notFree{
+    color:red;
+    border-color:red;
+}
 .selection__item_img{
     margin-bottom: 33px;   
 }

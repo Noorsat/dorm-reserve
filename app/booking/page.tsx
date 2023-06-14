@@ -1,17 +1,16 @@
 "use client"
 
-import {FC, useState} from 'react'
+import {FC, useState, useEffect} from 'react'
 import BookingHeader from '../components/BookingHeader/BookingHeader';
 import Rate from '../components/Rate/Rate';
 import Selection from '../components/Selection/Selection';
 import TotalPrice from '../components/TotalPrice/TotalPrice';
 import styles from './Booking.module.css';
-import {Modal} from 'antd';
+import {Modal, notification} from 'antd';
 import { IInfo } from './types';
-import BookingStep from '../components/BookingStep/BookingStep';
 import { useRouter } from 'next/navigation';
-import Confirm from '../components/Confirm/Confirm';
 import Header from '../components/Header/Header';
+import { createBed, getBeds, registerUserToBed } from '../http/beds';
 
 const Booking: FC = () => {
     const [nextActive, setNextActive] = useState<boolean>(false);
@@ -19,8 +18,20 @@ const Booking: FC = () => {
     const [totalModal, setTotalModal] = useState<boolean>(false);
     const [bookingModal, setBookingModal] = useState<boolean>(false);
     const [successModal, setSuccessModal] = useState<boolean>(false);
+    const [beds, setBeds] = useState<any>();
+    const id = localStorage.getItem("id");
 
-    const [info, setInfo] = useState<IInfo>()
+    useEffect(() => {
+        getBeds().then((res) => {
+            setBeds(res.data.filter((item : any) => item.status === 'unavailable'))
+        })
+    }, [])
+
+    console.log(beds)
+
+    const [info, setInfo] = useState<IInfo>();
+
+    console.log(info);
 
     const router = useRouter()
     
@@ -40,9 +51,35 @@ const Booking: FC = () => {
                 setBookingStep(bookingStep+1)
                 setNextActive(false);
             }else if (bookingStep === 3){
-                setNextActive(false);
-                setTotalModal(true);
-                setSuccessModal(true);
+                let body = {
+                    bedNumber: Number(info?.bed?.split(" ")[1]),
+                    roomId: Number(info?.floor?.split(" ")[1] + "" + info?.room?.split(" ")[1]),
+                    currency: "tng",
+                    price: 377000,
+                    status: "available",
+                    floor: Number(info?.floor.split(" ")[1]),
+                    block:  info?.block?.split(" ")[1]
+                }
+                createBed(body).then((res) => {
+                    if (res.status  === 200){
+                        let bed = info?.block?.split(" ")[1] + "-" + info?.floor?.split(" ")[1] + "" + info?.room?.split(" ")[1] + "-" + Number(info?.bed?.split(" ")[1])
+                        registerUserToBed(id, String(bed)).then((res) => {
+                            if (res.status === 200){
+                                setNextActive(false);
+                                setTotalModal(true);
+                                setSuccessModal(true);
+                            }
+                        }).catch((res) => {
+                            notification["error"]({
+                                message: "Booking Failed!"
+                            })
+                        }) 
+                    }
+                }).catch((res) => {
+                    notification["error"]({
+                        message: "Booking Failed!"
+                    })
+                }) 
             }
         }
     }
@@ -139,7 +176,7 @@ const Booking: FC = () => {
                                 </br>
                                 Select block → Select Floor  → Select Room  → Select Bed
                             </div>
-                            <Selection setNextActive={setNextActive} setInfo={setInfo} info={info}/>
+                            <Selection setNextActive={setNextActive} setInfo={setInfo} info={info} beds={beds}/>
                             <div className={`${styles.next__button} ${nextActive && styles.active}`} onClick={nextHandler}>
                                 <div className={styles.next__button_text}>
                                     NEXT

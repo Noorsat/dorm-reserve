@@ -39,6 +39,7 @@
     position: absolute;
     right:0;
     margin-top: 30px;
+    cursor: pointerа кт;
 }
 .next__button.active{
     background:#00AD43;

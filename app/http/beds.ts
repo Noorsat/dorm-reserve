@@ -15,6 +15,8 @@ export const updateBed = (id : any, body : any) => {
     return response;
 }
 
-export const registerUserToBed = () => {
-    
+export const registerUserToBed = (id : any, body: any) => {
+    const response = myAxios.put(`/users/${id}/beds`, body,
+    {headers: {"Content-Type": "text/plain"}});
+    return response;
 }
