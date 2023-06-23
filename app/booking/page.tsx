@@ -19,12 +19,13 @@ const Booking: FC = () => {
     const [bookingModal, setBookingModal] = useState<boolean>(false);
     const [successModal, setSuccessModal] = useState<boolean>(false);
     const [beds, setBeds] = useState<any>();
-    const id = localStorage.getItem("id");
+    const [id, setId] = useState<any>();
 
     useEffect(() => {
         getBeds().then((res) => {
             setBeds(res.data.filter((item : any) => item.status === 'unavailable'))
         })
+        const id = window.localStorage.getItem("id");
     }, [])
 
     const [info, setInfo] = useState<IInfo>();
