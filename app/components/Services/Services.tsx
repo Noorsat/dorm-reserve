@@ -83,7 +83,7 @@ const Services = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.services__wrapper}>
+                    {/* <div className={styles.services__wrapper}>
                         <div className={styles.services__wrapper_left}>
                             <div className={styles.services__title}>
                                 ANNUAL STUDENT RESIDENCE FEE:
@@ -127,7 +127,7 @@ const Services = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div> 
             </div>
             </div>
