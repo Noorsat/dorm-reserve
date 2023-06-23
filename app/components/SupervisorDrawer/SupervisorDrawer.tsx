@@ -14,14 +14,11 @@ const SupervisorDrawer : FC<any> = ({setSelectedTab} : any) => {
                 <div className={styles.drawer__item} onClick={() => setSelectedTab('students')}>
                     Students List
                 </div>
-                <div className={styles.drawer__item}>
+                <div className={styles.drawer__item} onClick={() => setSelectedTab('beds')}>
                     Manage Place
                 </div>
-                <div className={styles.drawer__item}>
+                <div className={styles.drawer__item} onClick={() => setSelectedTab('admins')}>
                     Manage Staff
-                </div>
-                <div className={styles.drawer__item}>
-                    Settings
                 </div>
             </div>
         </div>

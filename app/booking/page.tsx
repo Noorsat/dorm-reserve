@@ -27,11 +27,7 @@ const Booking: FC = () => {
         })
     }, [])
 
-    console.log(beds)
-
     const [info, setInfo] = useState<IInfo>();
-
-    console.log(info);
 
     const router = useRouter()
     

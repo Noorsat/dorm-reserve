@@ -10,12 +10,22 @@ export const tryLogin = (body : any) => {
     return response;
 } 
 
-export const getUser = (id : string) => {
+export const getUser = (id : any) => {
     const response = myAxios.get("/get/"+id);
     return response
 }
 
-export const getUsers = () => {
-    const response = myAxios.get("/user/list");
+export const getUsers = async () => {
+    const response = await myAxios.get("/user/list");
+    return response;
+}
+
+export const deleteUser = async (id : any) => {
+    const response = await myAxios.delete("/delete/"+id);
+    return response;
+}
+
+export const createUserByAdmin = async (body : any) => {
+    const response = myAxios.post("/user/addUser", body);
     return response;
 }

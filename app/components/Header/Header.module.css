@@ -285,3 +285,49 @@
 .faq__item_text_active{
     opacity: 1;
 }
+.services__wrapper{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Aleo', sans-serif;
+}
+.services__title{
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: 'Aleo', sans-serif;
+    margin-bottom: 9px;
+}
+.services__arrows{
+    text-align: center;
+    margin-bottom: 21.5px;
+}
+.services__semesters{
+    display: flex;
+    gap:57px;
+}
+.services__semester{
+    max-width: 279px;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    text-align: center;
+    color: #FFFFFF;
+    font-family: 'Aleo', sans-serif;
+}
+.services__wrapper_right{
+    max-width: 442px;
+    width: 100%;
+}
+.services__requisites{
+    background:#162868;
+    color:#fff;
+    text-align: center;
+    font-size: 16px;
+    padding: 20px 0;
+    line-height: 32px;
+}
+.services__requisite{
+    font-size: 22px;
+}

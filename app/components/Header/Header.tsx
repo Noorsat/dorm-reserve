@@ -17,6 +17,7 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
     const [resetPasswordModal, setResetPasswordModal] = useState<boolean>(false);
     const [isLogin, setIsLogin] = useState<boolean>();
     const [faqModal, setFaqModal] = useState<boolean>();
+    const [priceModal, setPriceModal] = useState<boolean>(false);
     const [faqData, setFaqData] = useState<any>(
         [
             {
@@ -212,7 +213,7 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
 
     const logoutHandler = () => {
         localStorage.removeItem("logged");
-        window.location.reload();
+        setIsLogin(false);
     }
 
     const langOpenHandler = () => {
@@ -290,6 +291,10 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                 setSignupModal(false);
                 localStorage.setItem('logged', 'ok');
                 localStorage.setItem('email', signup?.email);
+                getUsers().then((res) => {
+                    let user = res.data.filter((item : any)  => item?.email === signup?.email)[0];
+                    localStorage.setItem("id", user?.id)
+                })
                 setSignup({
                     studentId: '',
                     firstname: '',
@@ -429,7 +434,7 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                         Login
                     </div>
                     <div className={styles.signup__link}>
-                        Already have an account? <span onClick={signupOpenHandler}>Sign Up</span>
+                        Don't have an account yet? <span onClick={signupOpenHandler}>Sign Up</span>
                     </div>
                 </div>
             </Modal>  
@@ -457,7 +462,54 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                         Back to <span onClick={goLoginHandler}>Login</span>
                     </div>
                 </div>
-            </Modal>  
+            </Modal> 
+            <Modal open={priceModal} width={800} className="priceModal" onCancel={() => setPriceModal(false)} footer={[]}>
+            <div className={styles.services__wrapper}>
+                <div className={styles.services__wrapper_left}>
+                    <div className={styles.services__title}>
+                        ANNUAL STUDENT RESIDENCE FEE:
+                        <br></br>360 000 T (for 1 year)
+                    </div>
+                    <div className={styles.services__arrows}>
+                        <img src="arrows.svg"/>
+                    </div>
+                    <div className={styles.services__semesters}>
+                        <div className={styles.services__semester}>
+                            1st semester - 180 000 T
+                            (Payment must be 
+                            made by August 25th.)
+                        </div>
+                        <div className={styles.services__semester}>
+                            2nd semester - 180 000 T
+                            (Payment must be 
+                            made by January 1st.)
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.services__wrapper_right}>
+                    <div className={styles.services__title}>
+                        REQUISITES
+                    </div>
+                    <div className={styles.services__requisites}>
+                        <div className={styles.services__requisite}>
+                            ЖШС "DORM SERVICE"
+                        </div>
+                        <div className={styles.services__requisite}>
+                            Мекен-жай: 040900, Алматы обл.,<br></br>Қаскелең қаласы,<br></br>Абылай хан көш. 1/1
+                        </div>
+                        <div className={styles.services__requisite}>
+                            БИН: 110440021346
+                        </div>
+                        <div className={styles.services__requisite}>
+                            IBAN: KZ626017131000016522
+                        </div>
+                        <div className={styles.services__requisite}>
+                            БИК: HSBKKZKX КБе 17, КНП 872<br></br>"Халық Банк Қазақстан" АҚ
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </Modal> 
             <div className='container'>
                 <div className={styles.header__wrapper}>
                     <div className={styles.header__logo}>
@@ -486,6 +538,9 @@ const Header: FC<any> = ({loginModal, setLoginModal} : any) => {
                         </div>
                         <div className={styles.header__wrapper_item} onClick={() => setFaqModal(true)}>
                             FAQ
+                        </div>
+                        <div className={styles.header__wrapper_item} onClick={() => setPriceModal(true)}>
+                            Price
                         </div>
                     </div>
                     <div className={styles.header__wrapper_content}>

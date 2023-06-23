@@ -86,3 +86,10 @@ table{
 .addModal .ant-modal-close{
 	display: block!important;
 }
+.priceModal .ant-modal-close{
+	display: block!important;
+	color:#fff
+}
+.priceModal .ant-modal-content{
+	background: #082673;
+} 
