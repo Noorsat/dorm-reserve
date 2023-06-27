@@ -26,6 +26,8 @@ const Booking: FC = () => {
             setBeds(res.data.filter((item : any) => item.status === 'unavailable'))
         })
         const id = window.localStorage.getItem("id");
+
+        setId(id);
     }, [])
 
     const [info, setInfo] = useState<IInfo>();
